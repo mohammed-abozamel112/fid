@@ -1,0 +1,566 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@200;300;400;500;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&display=swap");
+
+/* Custom CSS Variables following BigFish design guidelines */
+:root {
+  /* FID Brand Colors */
+  --color-snow: #FCF7F8;
+  --color-madder: #A31621;
+  --color-black: #151515;
+  --color-white: #fff;
+  --color-dark-grey: #717171;
+  --color-mid-grey: #aaa;
+  --color-grey: #b6cbcb;
+
+  /* Additional palette */
+  --color-slate-50: #f8fafc;
+  --color-slate-100: #f1f5f9;
+  --color-slate-200: #e2e8f0;
+  --color-slate-300: #cbd5e1;
+  --color-slate-400: #94a3b8;
+  --color-slate-500: #64748b;
+  --color-slate-600: #475569;
+  --color-slate-700: #334155;
+  --color-slate-800: #1e293b;
+  --color-slate-900: #0f172a;
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', 'Sohne', 'Helvetica', 'Arial', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.6;
+}
+[dir="rtl"]* {
+    font-family: "Tajawal", sans-serif;
+    letter-spacing: clamp(0.2rem, 0.3rem, 0.5rem);
+}
+[dir="ltr"]* {
+    font-family: "DM Serif Text", sans-serif;
+    letter-spacing: clamp(0.2rem, 0.3rem, 0.5rem);
+}
+
+.glasseff {
+    background: rgba(255, 255, 255, 0.623);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.164);
+    backdrop-filter: blur(10.8px);
+    -webkit-backdrop-filter: blur(10.8px);
+    border: 1px solid rgba(255, 255, 255, 0.178);
+}
+/* hero */
+/* .hero {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 12 !important;
+    transition: all 1.6s cubic-bezier(0.86, 0, 0.07, 1);
+}
+.hero.scrolled {
+    transform: translate3d(0, -100%, 0) scale(0.75);
+    opacity: 0;
+}
+.hero-inner {
+    background-size: cover !important;
+    background-position: center !important  ;
+    display: table;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+}
+.hero-title {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.font-2 {
+    font-family: "josefin sans";
+    font-weight: 700;
+}
+.title {
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+}
+.text-light {
+    color: #fff;
+}
+.font-alt {
+    font-family: "georgia";
+    font-style: italic;
+    color: #666;
+}
+.hero {
+    overflow: hidden;
+    z-index: 1;
+} */
+
+/* hero */
+
+.gradient-text {
+    font-family: "Poppins", sans-serif;
+    background-image: url(https://cdn.pixabay.com/photo/2024/02/05/18/54/sunlight-8555108_1280.jpg);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    transition: color 0.2s;
+}
+
+/*  */
+.section {
+    --section-block-size: max(400px, 100dvb);
+    display: grid;
+    position: relative;
+    min-block-size: var(--section-block-size);
+    block-size: 100%;
+    padding-top: 4rem;
+}
+.section > * {
+    grid-area: 1/1;
+}
+
+/* Section Wrapper */
+.section-wrapper {
+    display: grid;
+    position: relative;
+}
+@media (width >= 960px) {
+    .section-wrapper {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (width < 960px) {
+    .section-wrapper {
+        padding-block-start: calc(var(--nav-block-size) + var(--size-7));
+        padding-block-end: var(--size-7);
+    }
+}
+
+/* Content */
+.content-wrapper {
+    display: grid;
+}
+@media (width < 960px) {
+    .content-wrapper {
+        gap: var(--size-7);
+    }
+}
+.meta {
+    display: flex;
+    flex-direction: column;
+}
+@media (width < 960px) {
+    .meta {
+        align-items: center;
+        text-align: center;
+    }
+}
+#tags {
+    @media (width <=960px) {
+        justify-content: center;
+    }
+}
+.content {
+    display: grid;
+    width: 100%;
+    place-items: center;
+    padding: var(--size-7) var(--size-5);
+}
+@media (width >= 960px) {
+    .content {
+        padding: var(--size-10);
+        min-block-size: 100cqb;
+        place-items: center end;
+    }
+}
+@media (width < 960px) {
+    .content {
+        gap: var(--size-5);
+    }
+}
+
+/* Visuals */
+.mobile-visual {
+    width: 100%;
+    aspect-ratio: var(--ratio-square);
+    display: flex;
+    justify-content: center;
+}
+@media (width >= 960px) {
+    .mobile-visual {
+        display: none;
+    }
+}
+.visual {
+    display: grid;
+    position: sticky;
+    top: 0;
+    height: var(--section-block-size);
+    container-type: size;
+}
+@media (width < 960px) {
+    .visual {
+        display: none;
+    }
+}
+/* .video {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: -1;
+}
+.video-visual {
+    width: 100%;
+    height: var(--section-block-size);
+    display: block;
+    position: sticky;
+    top: 0;
+    isolation: isolate;
+    filter: hue-rotate(210deg);
+} */
+
+/* Cards */
+.card-wrapper {
+    display: grid;
+    place-items: center;
+    overflow: clip;
+    container-type: size;
+}
+.card-wrapper > * {
+    grid-area: 1/1;
+}
+.card {
+    aspect-ratio: var(--ratio-square);
+    width: 70cqi;
+    border-radius: var(--radius-3);
+    scale: 0.4;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+.card-img {
+    width: 40rem;
+    height: 40rem;
+    border-radius: 50%;
+    border-top: #00bbff 0.2rem solid;
+    border-bottom: #00bbff 0.2rem solid;
+    padding: 1rem;
+    object-fit: cover;
+    display: block;
+    object-position: center right;
+}
+@media screen and (width < 960px) {
+    .card-img {
+        width: 20rem;
+        height: 20rem;
+        object-fit: cover;
+        object-position: center;
+    }
+}
+.card-1 {
+    scale: 1;
+}
+.card-2 {
+    translate: -35cqi 30cqb;
+    opacity: 0.3;
+}
+.card-3 {
+    translate: 0cqi 50cqb;
+    opacity: 0.5;
+}
+.card-4 {
+    translate: 45cqi 40cqb;
+    opacity: 0.5;
+}
+
+/* Typography */
+.headline {
+    font-size: var(--font-size-7);
+    font-weight: var(--font-weight-4);
+    max-inline-size: var(--size-content-1);
+    text-wrap: pretty;
+}
+@media (width < 960px) {
+    .headline {
+        font-size: var(--font-size-6);
+    }
+}
+.desc {
+    max-width: 40ch;
+    text-wrap: pretty;
+}
+
+/* Text Gradient */
+.content-1 {
+    --_text-gradient: linear-gradient(227deg, #1400c7 0%, #00bbff 100%);
+}
+.content-2 {
+    --_text-gradient: linear-gradient(227deg, #28dc28 0%, #00bbff 100%);
+}
+.content-3 {
+    --_text-gradient: linear-gradient(227deg, #1400c7 0%, #b800b1 100%);
+}
+.content-4 {
+    --_text-gradient: linear-gradient(227deg, #b800b1 0%, #f50000 100%);
+}
+.text-highlight {
+    background: var(--_text-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+/* Scroll Animations */
+@supports (animation-timeline: scroll()) {
+    body {
+        timeline-scope: --content-1, --content-2, --content-3, --content-4;
+    }
+    .section {
+        view-timeline-name: --section;
+    }
+    .content-1 {
+        view-timeline-name: --content-1;
+    }
+    .content-2 {
+        view-timeline-name: --content-2;
+    }
+    .content-3 {
+        view-timeline-name: --content-3;
+    }
+    .content-4 {
+        view-timeline-name: --content-4;
+    }
+    .card-1 {
+        animation-timeline: --content-1;
+        animation-name: slide-up-first-card;
+    }
+    .card-2 {
+        animation-timeline: --content-2;
+        animation-name: slide-up-card;
+    }
+    .card-3 {
+        animation-timeline: --content-3;
+        animation-name: slide-up-card;
+    }
+    .card-4 {
+        animation-timeline: --content-4;
+        animation-name: slide-up-card;
+    }
+    .video-visual {
+        animation-timeline: --section;
+        animation-range-end: exit 110%;
+        animation-name: update-hue;
+        animation-timing-function: step-end;
+        animation-fill-mode: forwards;
+    }
+    @keyframes update-hue {
+        0% {
+            filter: hue-rotate(210deg);
+        }
+        25% {
+            filter: hue-rotate(150deg);
+        }
+        45% {
+            filter: hue-rotate(300deg);
+        }
+        60% {
+            filter: hue-rotate(4deg);
+        }
+    }
+    @keyframes slide-up-first-card {
+        50% {
+            translate: 0;
+            opacity: 1;
+        }
+        90% {
+            translate: 0 -50cqi;
+            scale: 0.6;
+        }
+        100% {
+            translate: 0 -100cqi;
+            opacity: 0;
+        }
+    }
+    @keyframes slide-up-card {
+        50% {
+            translate: 0;
+            scale: 1;
+            opacity: 1;
+        }
+        90% {
+            translate: 0 -50cqb;
+            scale: 0.6;
+            opacity: 0.5;
+        }
+        100% {
+            translate: 0 -100cqi;
+            opacity: 0;
+        }
+    }
+}
+
+/* about */
+
+/* Custom decoration for section titles (the orange background rectangle) */
+/* Fix scroll offset for about section */
+#about {
+    scroll-margin-block: 4rem;
+}
+.about-title-decoration::after {
+    content: "";
+    width: 40px;
+    height: 28px;
+    background-color: hsla(14, 98%, 50%, 0.2);
+    /* Original --first-color with opacity */
+    position: absolute;
+    top: -4px;
+    right: -2rem;
+    z-index: 1;
+    /* Ensures it is behind the text content */
+}
+[dir="rtl"] .about-title-decoration::after {
+    left: -2rem;
+    right: inherit;
+}
+
+/* Base style for the geometric box shape */
+.about-geometric-shape {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: hsl(14, 98%, 50%);
+    /* Original --first-color */
+    transform: rotate(-30deg);
+    z-index: 1;
+    /* For stacking context */
+}
+
+/* Inner border for the geometric box */
+.about-geometric-shape::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border: 3px solid hsl(0, 0%, 0%);
+    /* Original --black-color */
+    left: -5px;
+    top: -5px;
+}
+[dir="rtl"].about-geometric-shape::after {
+    right: -5px;
+    left: 0;
+}
+
+/* Specific positioning for the geometric box within the about profile section */
+.about-perfil-geometric-box-position {
+    top: 1.5rem;
+    right: -2.8rem;
+}
+
+@media (min-width: 1150px) {
+    .about-perfil-geometric-box-position {
+        right: -4rem;
+        top: 4.5rem;
+    }
+}
+
+/* Style for the large shadow behind the profile image */
+.about-perfil-shadow {
+    position: absolute;
+    width: 150px;
+    height: 385px;
+    background-color: hsl(0, 0%, 87%);
+    /* Original --body-color */
+    top: -2.5rem;
+    right: -3.5rem;
+    border-bottom: 4px solid hsl(14, 98%, 50%);
+    /* Original --first-color */
+    border-radius: 0.75rem;
+    transition: background-color 0.4s;
+}
+
+@media (min-width: 1150px) {
+    .about-perfil-shadow {
+        width: 240px;
+        height: 615px;
+        top: -4rem;
+        right: -5.5rem;
+        border-bottom-width: 6px;
+    }
+}
+
+/* Style for the small square box in the profile section */
+.about-perfil-square-box {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: hsl(14, 98%, 50%);
+    /* Original --first-color */
+    right: -0.5rem;
+    bottom: 1.5rem;
+    border-radius: 0.75rem;
+}
+
+@media (min-width: 1150px) {
+    .about-perfil-square-box {
+        width: 64px;
+        height: 64px;
+        right: -0.75rem;
+    }
+}
+
+/* Line decoration for the description paragraph */
+.about-description-line::after {
+    content: "";
+    width: 20px;
+    height: 1px;
+    background-color: hsl(0, 0%, 0%);
+    /* Original --title-color */
+    position: absolute;
+    left: -1.75rem;
+    top: 0.5rem;
+}
+[dir="rtl"] .about-description-line::after {
+    right: -1.75rem;
+    left: inherit;
+}
+
+@media (min-width: 1150px) {
+    .about-description-line::after {
+        width: 32px;
+        height: 2px;
+        left: -3rem;
+        top: 14px;
+    }
+    [dir="rtl"] .about-description-line::after {
+        right: -3rem;
+        left: inherit;
+    }
+}
+
+/* Custom border width utility for precise pixel values */
+.border-3 {
+    border-width: 3px;
+}
+
+.border-6 {
+    border-width: 6px;
+}
+
+/* about */
+/* clients */
+
+/* clients */
