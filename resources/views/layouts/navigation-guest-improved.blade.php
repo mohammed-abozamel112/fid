@@ -1,13 +1,14 @@
 <header class="w-full fixed top-0 lg:max-w-4xl max-w-[335px] text-sm not-has-[nav]:hidden z-50">
     @if (Route::has('login'))
-        <nav class="fixed top-0 z-50 w-full bg-transparent text-[#A31621] shadow-md">
+        <nav class="fixed top-0 z-50 w-full bg-transparent text-[#504f4f] shadow-md">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between">
                     <!-- Logo -->
                     <div class="flex items-center">
                         <div class="flex flex-shrink-0 items-center space-x-2">
-                            <div class="flex h-12 w-12 items-center justify-center">
-                                <img src="{{ asset('storage/logo.png') }}" alt="">
+                            <div
+                                class="flex h-12 w-12 items-center justify-center">
+                                <img src="{{asset('storage/logo.png')}}" alt="">
                             </div>
                         </div>
                     </div>
@@ -28,18 +29,22 @@
                                     'name' => app()->getLocale() === 'en' ? 'Services' : 'خدماتنا',
                                     'href' => url(app()->getLocale() . '#services'),
                                 ],
+                                [
+                                    'name' => app()->getLocale() === 'en' ? 'Contact' : 'تواصل',
+                                    'href' => url(app()->getLocale() . '#contact'),
+                                ],
                             ];
                             $activeLink = request()->url();
                         @endphp
                         @foreach ($navLinks as $link)
                             <a href="{{ $link['href'] }}"
                                 class="cursor-pointer px-3 py-2 text-sm font-medium nav-scroll-trigger
-                                    {{ $activeLink === $link['href'] ? 'border-b-2 border-blue-500 text-[#A31621]' : 'text-[#A31621] hover:border-b-2 hover:border-blue-500' }}">
+                                    {{ $activeLink === $link['href'] ? 'border-b-2 border-blue-500 text-[#b4e7e0]' : 'text-[#eec4a2] hover:border-b-2 hover:border-blue-500 hover:text-[#dcfaf6]' }}">
                                 {{ $link['name'] }}
                             </a>
                         @endforeach
                         <a href="#" target="_blank"
-                            class="bg-[#A31621] hover:bg-red-700 text-white px-6 py-1 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">
+                            class="ml-6 rounded-md bg-gradient-to-r from-purple-600 to-blue-500 px-4 py-2 transition-colors duration-300 hover:from-blue-500 hover:to-purple-600">
                             {{ app()->getLocale() === 'en' ? 'Connect' : 'تواصل معنا' }}
                         </a>
 
@@ -76,7 +81,7 @@
                 @foreach ($navLinks as $link)
                     <a href="{{ $link['href'] }}"
                         class="block cursor-pointer rounded-md px-3 py-2 text-center text-base font-medium
-                            {{ $activeLink === $link['href'] ? 'bg-[#A31621] text-white' : 'text-[#A31621] hover:bg-[#A31621] hover:text-white' }}">
+                            {{ $activeLink === $link['href'] ? 'bg-[#ffc74fb4] text-[#a35521]' : 'text-[#242424] hover:bg-[#ffc74fb4] hover:text-white' }}">
                         {{ $link['name'] }}
                     </a>
                 @endforeach
@@ -85,38 +90,8 @@
                     Connect
                 </button>
             </div>
-    </nav>
-@endif
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const links = document.querySelectorAll(".nav-scroll-trigger");
-
-        function setActiveLink(hash) {
-            links.forEach(link => {
-                if (link.hash === hash) {
-                    link.classList.add("border-b-2", "border-[#A31621]", "text-[#A31621]");
-                    link.classList.remove("text-[#A31621]");
-                } else {
-                    link.classList.remove("border-b-2", "border-[#A31621]", "text-[#A31621]");
-                    link.classList.add("text-[#A31621]");
-                }
-            });
-        }
-
-        // Click → update active
-        links.forEach(link => {
-            link.addEventListener("click", function() {
-                setActiveLink(this.hash);
-            });
-        });
-
-        // If page opens with a hash
-        if (window.location.hash) {
-            setActiveLink(window.location.hash);
-        }
-    });
-</script>
+        </nav>
+    @endif
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuButton = document.getElementById('mobile-menu-button');

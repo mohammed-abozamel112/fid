@@ -37,7 +37,7 @@ return new class extends Migration {
             // status of the blog
             $table->enum('status', ['draft', 'published'])->default('draft');
             // author of the blog
-            $table->foreignId('user_id')->nullable()->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->default(1)->nullable()->constrained('users')->onDelete('cascade');
             // timestamps
             $table->timestamps();
         });

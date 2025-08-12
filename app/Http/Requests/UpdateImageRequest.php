@@ -32,7 +32,7 @@ class UpdateImageRequest extends FormRequest
             'caption_en' => 'nullable|string|max:255',
             'type' => [
                 'required',
-                Rule::in(['blog', 'service', 'gallery', 'profile', 'client']),
+                Rule::in(['blog', 'service', 'gallery', 'profile', 'client','works','home','about']),
             ],
             // service_id and blog_id will be set automatically by the controller
             // assuming they are nullable for this request

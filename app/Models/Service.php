@@ -28,7 +28,6 @@ class Service extends Model
         'description3_en',
         'image',
         'status',
-        'order',
         'price',
     ];
     // Dynamic accessor for name attribute based on locale

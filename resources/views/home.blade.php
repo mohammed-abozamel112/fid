@@ -7,7 +7,7 @@
         $img = $gallery->first();
 
     @endphp
-    <section id="hero" class="w-full h-screen relative overflow-hidden">
+    <section id="hero" class="w-full h-auto min-h-screen relative overflow-hidden">
         {{-- Background Gradient --}}
         <div class="absolute inset-0 bg-gradient-to-br from-[#FCF7F8] via-white to-red-50"></div>
 
@@ -97,12 +97,13 @@
                             <div class="space-y-6">
                                 {{-- Header --}}
                                 <div class="flex items-center justify-between">
-                                    <div class="flex items-center space-x-3">
+                                    <div class="flex items-center gap-3">
                                         <div class="w-3 h-3 bg-red-500 rounded-full"></div>
                                         <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
                                         <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                                     </div>
-                                    <div class="text-sm text-gray-400">Fid Company</div>
+                                    <div class="text-sm text-gray-400">
+                                        {{ app()->getLocale() === 'en' ? 'Fid Company' : 'شركة فيد للنسويق' }}</div>
                                 </div>
 
                                 {{-- Content --}}
@@ -124,7 +125,7 @@
                                         <div class="bg-red-400 w-6 h-14 rounded-sm"></div>
                                         <div class="bg-red-300 w-6 h-8 rounded-sm"></div>
                                     </div> --}}
-                                    <img class="w-full max-h-48 object-cover"
+                                    <img loading="lazy" class="w-full max-h-48 object-cover"
                                         src="{{ asset('storage/' . 'main.png') ?? $img->image }}" alt="">
                                 </div>
                             </div>
@@ -153,80 +154,72 @@
         </a>
     </section>
 
-    {{-- about us --}}
-    <section class="bg-gray-200 w-full transition-colors duration-400 pt-20 pb-2" id="about">
+    {{-- Dynamic About Us Section --}}
+    <section id="about" class="min-h-screen h-auto bg-gradient-to-br from-[#FCF7F8] via-white to-red-50">
         <div
-            class="max-w-screen-xl mx-auto px-6 pt-8 grid gap-6 min-h-max
-                sm:grid-cols-[350px] sm:justify-center
-                xl:grid-cols-[460px_525px] xl:gap-x-36 xl:gap-y-4 xl:items-center">
-
-            <h2 class="relative text-3xl font-bold w-max mx-auto mb-8 about-title-decoration xl:text-5xl">
-                <span class="relative z-10">{{ app()->getLocale() === 'en' ? 'About Us.' : 'من نحن' }}</span>
-            </h2>
-
-            <div
-                class="relative justify-self-center my-[2.5rem] mb-[4.5rem]
-                    xl:order-[-1] xl:row-span-2">
-                <div class="w-[220px] xl:w-[350px]">
-                    <img src="https://images.unsplash.com/photo-1577565177023-d0f29c354b69?crop=entropy&cs=srgb&fm=jpg&ixid=M3wzMjM4NDZ8MHwxfHJhbmRvbXx8fHx8fHx8fDE3MTI3Njk4OTB8&ixlib=rb-4.0.3&q=85"
-                        alt="image"
-                        class="relative block max-w-full h-auto border-4 border-white z-10 rounded-lg shadow-[rgba(0,0,0,0.2)_0px_8px_24px] xl:border-6">
-
-                    <div class="about-perfil-shadow"></div>
-
-                    <div class="about-geometric-shape about-perfil-geometric-box-position"></div>
-
-                    <div class="about-perfil-square-box"></div>
+            class="content-about ps-[120px] text-[#c7c7c7c9] select-none max-[1200px]:ps-20 max-[1050px]:ps-16 max-[950px]:text-center max-[950px]:px-[90px] max-[650px]:px-[50px]">
+            <h1
+                class="font-['Dancing Script',cursive] text-[clamp(2.5rem,4vw,6rem)] font-bold bg-gradient-to-r from-[#A31621] to-[#A31621] bg-clip-text text-transparent  mb-9 ps-2 max-[650px]:ps-0">
+                {{ app()->getLocale() === 'en' ? 'About Us' : 'من نحن' }}
+            </h1>
+            <p class="text-[clamp(0.9rem,4vw,1.2rem)] pe-[100px] max-[1200px]:pe-10 max-[990px]:pe-0 pb-8">
+                {{ app()->getLocale() === 'en' ? 'Welcome to our digital agency where every project is a journey into the exquisite world of creative solutions. We are dedicated to bringing you the most innovative and beautifully designed digital experiences that will delight your senses and elevate your brand.' : 'مرحبًا بكم في وكالتنا الرقمية حيث كل مشروع هو رحلة إلى عالم الحلول الإبداعية الرائعة. نحن ملتزمون بتقديم أكثر التجارب الرقمية ابتكارًا وتصميمًا جماليًا التي ستسعد حواسكم وتعزز علامتكم التجارية.' }}
+            </p>
+            <a href="#contact"
+                class="bg-[#A31621] hover:bg-red-700 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">
+                {{ app()->getLocale() === 'en' ? 'Explore More' : 'اكتشف المزيد' }}
+            </a>
+        </div>
+        {{-- Dynamic About Images --}}
+        <div class="stack">
+            @foreach ($aboutImages as $index => $image)
+                <div class="pictures">
+                    <img loading="lazy" src="{{ asset('storage/' . $image->image) }}"
+                        onerror="this.onerror=null; this.src='{{ asset('storage/main.png') }}'"
+                        alt="{{ $image->alt ?? 'About Us Image ' . ($index + 1) }}"
+                        class="w-full h-full object-cover rounded-lg shadow-md hover:shadow-xl transition-shadow duration-300">
                 </div>
-            </div>
-
-            <div class="{{ $isRtl ? 'pr-5 xl:self-start xl:pr-12' : 'pl-5 xl:self-start xl:pl-12' }}">
-                <p class="relative text-black mb-6 about-description-line xl:text-2xl">
-                    Passionate about creating <b>Web Pages</b> with
-                    <b>UI/UX User Interface</b>, I have years of
-                    experience and many clients are happy with
-                    the projects carried out.
-                </p>
-
-                <ul class="text-black mb-12 xl:mb-20">
-                    <li>
-                        <b>{{ app()->getLocale() === 'en' ? 'Our Skills:' : 'مهاراتنا :' }}</b> HTML, CSS, JavaScript,
-                        React, Git & GitHub, Bootstrap, Flutter &
-                        Figma.
-                    </li>
-                </ul>
-
-                <div class="flex justify-evenly items-center m-auto max-w-[50%] sm:max-w-[100%]:">
-                    <a href="#contact"
-                        class="flex items-center justify-center {{ $isRtl ? 'space-x-reverse' : 'space-x-2' }} bg-black text-white font-medium py-4 px-6 rounded-lg transition-colors duration-400 hover:bg-orange-500">
-                        <i class="ri-send-plane-line text-xl"></i>
-                        {{ app()->getLocale() === 'en' ? 'Contact Us' : 'اتصل بنا' }}
-                    </a>
-
-                    <a href="https://www.linkedin.com/" target="_blank"
-                        class="flex items-center justify-center {{ $isRtl ? 'space-x-reverse' : 'space-x-2' }} border-3 border-black text-black p-2 rounded-[0.7rem] transition-all duration-400 hover:border-orange-500 hover:text-orange-500 xl:p-3">
-                        <i class="ri-linkedin-box-line text-xl xl:text-2xl"></i>
-                    </a>
-                </div>
-            </div>
+            @endforeach
         </div>
     </section>
+
+
     {{-- about us --}}
 
 
     {{-- services section --}}
-    <section class="w-full bg-transparent text-[#A31621]" id="services">
+    <section
+        class="w-full bg-transparent text-[#A31621] mt-20 lg:mt-0 pt-16 bg-gradient-to-br from-[#FCF7F8] via-white to-red-50"
+        id="services">
         {{-- section for services --}}
-        <h2 class="mt-2 text-8xl font-bold text-center gradient-text" id="services">
-            {{ app()->getLocale() === 'en' ? 'Our services' : 'خدماتنا' }}
-        </h2>
+        {{-- Section Header --}}
+                <div class="text-center mb-16">
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-[#A31621]/10 text-[#A31621] text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-[#A31621] rounded-full mr-2 animate-pulse"></span>
+                        {{ app()->getLocale() === 'en' ? 'Our Services' : 'خدماتنا' }}
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#A31621] mb-6">
+                        {{ app()->getLocale() === 'en' ? 'Innovative Solutions' : 'حلول مبتكرة' }}
+                        <span
+                            class="text-gradient">
+                            {{ app()->getLocale() === 'en' ? 'in the Industry' : 'في الصناعة' }}
+                        </span>
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        {{ app()->getLocale() === 'en'
+                            ? 'Explore our diverse range of services designed to elevate your brand and drive success. From web development to digital marketing, we have the expertise to help you thrive.'
+                            : 'استكشف مجموعة خدماتنا المتنوعة المصممة لرفع مستوى علامتك التجارية ودفع النجاح. من تطوير الويب إلى التسويق الرقمي، لدينا الخبرة لمساعدتك على الازدهار.' }}
+                    </p>
+                </div>
+                {{-- End Section Header --}}
         <div class="section">
             <div class="section-wrapper py-5">
                 <div class="content-wrapper py-3">
                     @foreach ($services as $index => $service)
                         <div class="content content-{{ $index + 1 }}">
                             <div class="mobile-visual">
-                                <img class="card-img" src="{{ asset('storage/' . $service->image) }}"
+                                <img loading="lazy" class="card-img" src="{{ asset('storage/' . $service->image) }}"
                                     alt="{{ $service->name }}" />
                             </div>
                             <div class="meta">
@@ -236,10 +229,15 @@
                                 <!-- tag links page -->
                                 {{-- only for service selection --}}
 
-                                <div class="my-2 py-5 inline-flex flex-wrap gap-2" id="tags">
+                                {{-- tags max 3 per col --}}
+                                <div class="my-2 py-5 grid grid-cols-3 gap-2" id="tags">
                                     @foreach ($service->tags as $tag)
                                         <a href="{{ $tag->url }}"
-                                            class="inline-block rounded-full border border-gray-300 px-3 py-1 text-sm text-gray-700 hover:bg-gray-100"
+                                            class="border border-[#f3f3f3] hover:border-[#A31621] text-[#A31621]
+          bg-gradient-to-br from-[#FCF7F8] via-white to-red-50
+          hover:bg-none hover:bg-[#A31621] hover:text-white
+          px-3 py-3 rounded-full text-sm font-medium
+          transition-all duration-700 ease-in-out    hover:shadow-lg group text-center"
                                             target="_blank" rel="noopener noreferrer">
                                             {{ $tag->name }}
                                         </a>
@@ -253,7 +251,8 @@
                     <div class="card-wrapper">
                         @foreach ($services as $index => $service)
                             <div class="card card-{{ $index + 1 }}">
-                                <img class="card-img" src="{{ asset('storage/' . $service->image) }}"
+                                <img loading="lazy" class="card-img" src="{{ asset('storage/' . $service->image) }}"
+                                    onerror="this.onerror=null; this.src='{{ asset('storage/main.png') }}'"
                                     alt="{{ $service['name'] }}" />
                             </div>
                         @endforeach
@@ -299,8 +298,7 @@
                         @foreach ($portfolioProjects->pluck('category')->unique() as $category)
                             <button
                                 class="px-4 py-2 rounded-full bg-[#A31621]/10 text-[#A31621] text-sm font-medium hover:bg-[#A31621]/20 transition"
-                                data-filter="{{ $category }}"
-                                onclick="filterPortfolio('{{ $category }}')">
+                                data-filter="{{ $category }}" onclick="filterPortfolio('{{ $category }}')">
                                 {{ $category }}
                             </button>
                         @endforeach
@@ -314,7 +312,8 @@
                             data-filter="{{ $project->category }}">
                             {{-- Project Image --}}
                             <div class="relative overflow-hidden rounded-t-2xl">
-                                <img src="{{ $project->image }}" alt="{{ $project->title }}"
+                                <img loading="lazy" src="{{ $project->image }}" alt="{{ $project->title }}"
+                                    onerror="this.onerror=null; this.src='{{ asset('storage/main.png') }}'"
                                     class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                                     loading="lazy" />
                                 <div
@@ -414,7 +413,8 @@
                         <div class="text-center">
                             <div class="text-3xl font-bold text-[#A31621] mb-2">2.5x</div>
                             <div class="text-gray-600 dark:text-gray-300">
-                                {{ app()->getLocale() === 'en' ? 'Average ROI Increase' : 'متوسط زيادة العائد' }}</div>
+                                {{ app()->getLocale() === 'en' ? 'Average ROI Increase' : 'متوسط زيادة العائد' }}
+                            </div>
                         </div>
                         <div class="text-center">
                             <div class="text-3xl font-bold text-[#A31621] mb-2">40%</div>
@@ -458,6 +458,44 @@
     {{-- section for works --}}
 
     {{-- Clients Section --}}
+    {{-- Portfolio Section --}}
+    <section id="partener" class="w-full py-20 bg-gradient-to-br from-gray-50 to-white ">
+        <div class="container mx-auto px-4">
+            <div class="max-w-7xl mx-auto">
+                {{-- Section Header --}}
+                <div class="text-center mb-16">
+                    <div
+                        class="inline-flex items-center px-4 py-2 rounded-full bg-[#A31621]/10 text-[#A31621] text-sm font-medium mb-6">
+                        <span class="w-2 h-2 bg-[#A31621] rounded-full mr-2 animate-pulse"></span>
+                        {{ app()->getLocale() === 'en' ? 'Our Partners' : 'شركاؤنا' }}
+                    </div>
+                    <h2 class="text-4xl md:text-5xl font-bold text-[#A31621] mb-6">
+                        {{ app()->getLocale() === 'en' ? 'Trusted by the best' : 'موثوق به من قبل الأفضل' }}
+
+                        <span
+                            class="text-gradient">{{ app()->getLocale() === 'en' ? 'in the Industry' : 'في الصناعة' }}</span>
+                    </h2>
+                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                        {{ app()->getLocale() === 'en'
+                            ? "Explore our diverse portfolio of successful projects across industries. From startups to enterprise solutions, see how we've helped clients achieve their goals."
+                            : 'استكشف مجموعة متنوعة من مشاريعنا الناجحة في مختلف الصناعات. من الشركات الناشئة إلى الحلول المؤسسية، شاهد كيف ساعدنا عملاءنا على تحقيق أهدافهم.' }}
+                    </p>
+                </div>
+                {{-- End Section Header --}}
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-0">
+                    @foreach ($clientImages as $partner)
+                        <div class="flex items-center justify-center">
+                            <img loading="lazy" src="{{ $partner->image }}"
+                                onerror="this.onerror=null; this.src='{{ asset('storage/logo.png') }}'"
+                                alt="{{ $partner->name }}" class="h-auto min-h-[16rem]">
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </section>
+    {{-- Clients Section --}}
+    {{-- Reviews Section --}}
 
     <section id="reviews" class="py-20 w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -488,7 +526,9 @@
                             </svg>
                         </div>
                         <div class="flex justify-evenly items-center mb-6 {{ $isRtl ? 'flex-row-reverse' : '' }}">
-                            <img src="{{ $review->image ?? asset('storage/logo.png') }}" alt="{{ $review->name }}"
+                            <img loading="lazy" src="{{ $review->image ?? asset('storage/logo.png') }}"
+                                onerror="this.onerror=null; this.src='{{ asset('storage/profile.png') }}'"
+                                alt="{{ $review->name }}"
                                 class="w-16 h-16 rounded-full object-cover {{ $isRtl ? 'mr-4' : 'ml-4' }}">
                             <div class="{{ $isRtl ? 'text-right' : 'text-left' }}">
                                 <h4 class="text-lg font-semibold text-[#A31621]">{{ $review->name }}</h4>
@@ -561,12 +601,14 @@
                     <div
                         class="bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 cursor-pointer relative min-h-[20rem] ">
                         @if ($post->tags->isNotEmpty())
-                            @foreach ($post->tags as $tag)
-                                <span
-                                    class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full inline-block whitespace-nowrap absolute z-50 top-2">
-                                    {{ $tag->name }}
-                                </span>
-                            @endforeach
+                            <div class="flex absolute z-50 top-2 gap-2 px-3">
+                                @foreach ($post->tags as $tag)
+                                    <span
+                                        class="bg-[#A31621] hover:bg-red-700 text-white px-2 py-2 rounded-full text-[.5rem] font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">
+                                        {{ $tag->name }}
+                                    </span>
+                                @endforeach
+                            </div>
                         @else
                             <span
                                 class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full inline-block whitespace-nowrap absolute z-50 top-2">
@@ -576,15 +618,16 @@
                         <a class="w-full h-full"
                             href="{{ route('blogs.show', ['lang' => app()->getLocale(), 'blog' => $post->id]) }}">
                             @if ($post->image)
-                                <img src="{{ $post->image ? $post->image : asset('storage/' . $post->image) }}"
+                                <img loading="lazy" src="{{ $post->image ? $post->image : asset('storage/' . $post->image) }}"
+                                    onerror="this.onerror=null; this.src='{{ asset('storage/main.png') }}'"
                                     alt="{{ $post->title }}" class="w-full h-full object-cover hover:blur-sm" />
                             @endif
                             <div class="p-6 absolute bottom-0">
                                 <h3 class="text-2xl font-bold mb-2">{{ $post->title }}</h3>
                                 <p class="text-gray-300 mb-4">
                                     {{ Str::limit($post->short_description, 150) }}</p>
-                                <span
-                                    class="text-blue-400 hover:underline">{{ app()->getLocale() === 'en' ? 'Read More' : 'اعرف المزيد' }}</span>
+                                <a
+                                    class="bg-[#A31621] hover:bg-red-700 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">{{ app()->getLocale() === 'en' ? 'Read More' : 'اعرف المزيد' }}</a>
                             </div>
                         </a>
                     </div>
@@ -600,15 +643,15 @@
     @endif
 
 
-<script>
-    function filterPortfolio(category) {
-        document.querySelectorAll('.portfolio-card').forEach(function(card) {
-            if (category === '' || card.getAttribute('data-filter') === category) {
-                card.style.display = '';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
-</script>
+    <script>
+        function filterPortfolio(category) {
+            document.querySelectorAll('.portfolio-card').forEach(function(card) {
+                if (category === '' || card.getAttribute('data-filter') === category) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </x-master-layout>

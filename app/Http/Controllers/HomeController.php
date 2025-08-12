@@ -30,12 +30,14 @@ class HomeController extends Controller
         $clientImages = Image::where('type', 'client')->get();
         //images with type profile
         $profileImages = Image::where('type', 'profile')->get();
+        //about images
+        $aboutImages = Image::where('type', 'about')->take(6)->get();
         //return latest 4 reviews
         $latestReviews = Review::latest()->take(4)->get();
         //get all projects in filter according to category
         $portfolioProjects = Project::with('tags')->get();
         //return view with all data
-        return view('home', compact('services', 'latestPosts', 'gallery', 'homeImages', 'worksImages', 'clientImages', 'profileImages', 'latestReviews', 'portfolioProjects'));
+        return view('home', compact('services', 'latestPosts', 'gallery', 'homeImages', 'worksImages', 'clientImages', 'profileImages', 'latestReviews', 'portfolioProjects', 'aboutImages'));
     }
 
 }

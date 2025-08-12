@@ -32,7 +32,7 @@ class StoreImageRequest extends FormRequest
             'caption_en' => 'nullable|string|max:255',
             'type' => [
                 'required',
-                Rule::in(['blog', 'service', 'gallery', 'profile', 'client']),
+                Rule::in(['blog', 'service', 'gallery', 'profile', 'client','works','home','about']),
             ],
             'service_id' => 'nullable|exists:services,id',
             'blog_id' => 'nullable|exists:blogs,id',

@@ -7,38 +7,38 @@
 
 /* Custom CSS Variables following BigFish design guidelines */
 :root {
-  /* FID Brand Colors */
-  --color-snow: #FCF7F8;
-  --color-madder: #A31621;
-  --color-black: #151515;
-  --color-white: #fff;
-  --color-dark-grey: #717171;
-  --color-mid-grey: #aaa;
-  --color-grey: #b6cbcb;
+    /* FID Brand Colors */
+    --color-snow: #fcf7f8;
+    --color-madder: #a31621;
+    --color-black: #151515;
+    --color-white: #fff;
+    --color-dark-grey: #717171;
+    --color-mid-grey: #aaa;
+    --color-grey: #b6cbcb;
 
-  /* Additional palette */
-  --color-slate-50: #f8fafc;
-  --color-slate-100: #f1f5f9;
-  --color-slate-200: #e2e8f0;
-  --color-slate-300: #cbd5e1;
-  --color-slate-400: #94a3b8;
-  --color-slate-500: #64748b;
-  --color-slate-600: #475569;
-  --color-slate-700: #334155;
-  --color-slate-800: #1e293b;
-  --color-slate-900: #0f172a;
+    /* Additional palette */
+    --color-slate-50: #f8fafc;
+    --color-slate-100: #f1f5f9;
+    --color-slate-200: #e2e8f0;
+    --color-slate-300: #cbd5e1;
+    --color-slate-400: #94a3b8;
+    --color-slate-500: #64748b;
+    --color-slate-600: #475569;
+    --color-slate-700: #334155;
+    --color-slate-800: #1e293b;
+    --color-slate-900: #0f172a;
 }
 
 /* Smooth scrolling */
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', 'Sohne', 'Helvetica', 'Arial', sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  line-height: 1.6;
+    font-family: "Inter", "Sohne", "Helvetica", "Arial", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
 }
 [dir="rtl"]* {
     font-family: "Tajawal", sans-serif;
@@ -56,56 +56,6 @@ body {
     -webkit-backdrop-filter: blur(10.8px);
     border: 1px solid rgba(255, 255, 255, 0.178);
 }
-/* hero */
-/* .hero {
-    height: 100vh;
-    width: 100%;
-    position: fixed;
-    top: 0;
-    z-index: 12 !important;
-    transition: all 1.6s cubic-bezier(0.86, 0, 0.07, 1);
-}
-.hero.scrolled {
-    transform: translate3d(0, -100%, 0) scale(0.75);
-    opacity: 0;
-}
-.hero-inner {
-    background-size: cover !important;
-    background-position: center !important  ;
-    display: table;
-    background-repeat: no-repeat !important;
-    width: 100%;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-}
-.hero-title {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-}
-
-.font-2 {
-    font-family: "josefin sans";
-    font-weight: 700;
-}
-.title {
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-}
-.text-light {
-    color: #fff;
-}
-.font-alt {
-    font-family: "georgia";
-    font-style: italic;
-    color: #666;
-}
-.hero {
-    overflow: hidden;
-    z-index: 1;
-} */
-
 /* hero */
 
 .gradient-text {
@@ -416,148 +366,175 @@ body {
 
 /* Custom decoration for section titles (the orange background rectangle) */
 /* Fix scroll offset for about section */
+/* ===== About Section Layout ===== */
 #about {
-    scroll-margin-block: 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    min-height: 100vh;
+    gap: 1rem;
 }
-.about-title-decoration::after {
-    content: "";
-    width: 40px;
-    height: 28px;
-    background-color: hsla(14, 98%, 50%, 0.2);
-    /* Original --first-color with opacity */
+
+/* ===== Stacked Cards Container ===== */
+#about .stack {
+    position: relative;
+}
+
+/* ===== Card Images ===== */
+#about .pictures {
     position: absolute;
-    top: -4px;
-    right: -2rem;
-    z-index: 1;
-    /* Ensures it is behind the text content */
-}
-[dir="rtl"] .about-title-decoration::after {
-    left: -2rem;
-    right: inherit;
-}
-
-/* Base style for the geometric box shape */
-.about-geometric-shape {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: hsl(14, 98%, 50%);
-    /* Original --first-color */
-    transform: rotate(-30deg);
-    z-index: 1;
-    /* For stacking context */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 350px;
+    height: 500px;
+    border-radius: 2rem;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.25), 0 15px 20px rgba(0, 0, 0, 0.125);
+    transition: transform 0.6s;
+    user-select: none;
 }
 
-/* Inner border for the geometric box */
-.about-geometric-shape::after {
-    content: "";
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    border: 3px solid hsl(0, 0%, 0%);
-    /* Original --black-color */
-    left: -5px;
-    top: -5px;
-}
-[dir="rtl"].about-geometric-shape::after {
-    right: -5px;
-    left: 0;
+#about .pictures img {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    object-fit: cover;
+    pointer-events: none;
 }
 
-/* Specific positioning for the geometric box within the about profile section */
-.about-perfil-geometric-box-position {
-    top: 1.5rem;
-    right: -2.8rem;
+/* ===== Card Layer Positions ===== */
+#about .pictures:nth-last-child(n + 5) {
+    --x: calc(-50% + 90px);
+    transform: translate(var(--x), -50%) scale(0.85);
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.01);
 }
 
-@media (min-width: 1150px) {
-    .about-perfil-geometric-box-position {
-        right: -4rem;
-        top: 4.5rem;
+#about .pictures:nth-last-child(4) {
+    --x: calc(-50% + 60px);
+    transform: translate(var(--x), -50%) scale(0.9);
+}
+#about .pictures:nth-last-child(3) {
+    --x: calc(-50% + 30px);
+    transform: translate(var(--x), -50%) scale(0.95);
+}
+#about .pictures:nth-last-child(2) {
+    --x: -50%;
+    transform: translate(var(--x), -50%) scale(1);
+}
+#about .pictures:nth-last-child(1) {
+    --x: calc(-50% - 30px);
+    transform: translate(var(--x), -50%) scale(1.05);
+}
+
+#about .pictures:nth-last-child(1) img {
+    box-shadow: 0 1px 5px 5px rgba(255, 193, 111, 0.5);
+}
+
+/* ===== Swap Animation ===== */
+#about .swap {
+    animation: swap 1.3s ease-out forwards;
+}
+
+@keyframes swap {
+    30% {
+        transform: translate(calc(var(--x) - 250px), -50%) scale(0.85)
+            rotate(-5deg) rotateY(65deg);
+    }
+    100% {
+        transform: translate(calc(var(--x) - 30px), -50%) scale(0.5);
+        z-index: -1;
     }
 }
 
-/* Style for the large shadow behind the profile image */
-.about-perfil-shadow {
-    position: absolute;
-    width: 150px;
-    height: 385px;
-    background-color: hsl(0, 0%, 87%);
-    /* Original --body-color */
-    top: -2.5rem;
-    right: -3.5rem;
-    border-bottom: 4px solid hsl(14, 98%, 50%);
-    /* Original --first-color */
-    border-radius: 0.75rem;
-    transition: background-color 0.4s;
-}
-
-@media (min-width: 1150px) {
-    .about-perfil-shadow {
-        width: 240px;
-        height: 615px;
-        top: -4rem;
-        right: -5.5rem;
-        border-bottom-width: 6px;
+/* ===== Responsive Keyframe Adjustments ===== */
+@media (max-width: 1200px) {
+    @keyframes swap {
+        30% {
+            transform: translate(calc(var(--x) - 200px), -50%) scale(0.85)
+                rotate(-5deg) rotateY(65deg);
+        }
+        100% {
+            transform: translate(calc(var(--x) - 30px), -50%) scale(0.5);
+            z-index: -1;
+        }
     }
 }
 
-/* Style for the small square box in the profile section */
-.about-perfil-square-box {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    background-color: hsl(14, 98%, 50%);
-    /* Original --first-color */
-    right: -0.5rem;
-    bottom: 1.5rem;
-    border-radius: 0.75rem;
-}
-
-@media (min-width: 1150px) {
-    .about-perfil-square-box {
-        width: 64px;
-        height: 64px;
-        right: -0.75rem;
+@media (max-width: 1050px) {
+    @keyframes swap {
+        30% {
+            transform: translate(calc(var(--x) - 150px), -50%) scale(0.85)
+                rotate(-5deg) rotateY(65deg);
+        }
+        100% {
+            transform: translate(calc(var(--x) - 30px), -50%) scale(0.5);
+            z-index: -1;
+        }
     }
 }
 
-/* Line decoration for the description paragraph */
-.about-description-line::after {
-    content: "";
-    width: 20px;
-    height: 1px;
-    background-color: hsl(0, 0%, 0%);
-    /* Original --title-color */
-    position: absolute;
-    left: -1.75rem;
-    top: 0.5rem;
-}
-[dir="rtl"] .about-description-line::after {
-    right: -1.75rem;
-    left: inherit;
-}
-
-@media (min-width: 1150px) {
-    .about-description-line::after {
-        width: 32px;
-        height: 2px;
-        left: -3rem;
-        top: 14px;
+/* ===== Responsive Layout Adjustments ===== */
+@media (max-width: 1200px) {
+    #about .content-about {
+        padding-left: 80px;
     }
-    [dir="rtl"] .about-description-line::after {
-        right: -3rem;
-        left: inherit;
+    #about .content-about p {
+        padding-right: 40px;
+    }
+    #about .pictures {
+        width: 250px;
+        height: 380px;
     }
 }
 
-/* Custom border width utility for precise pixel values */
-.border-3 {
-    border-width: 3px;
+@media (max-width: 1050px) {
+    #about .content-about {
+        padding-left: 60px;
+    }
+    #about .content-about p {
+        line-height: 1.5;
+    }
+    #about .pictures {
+        width: 220px;
+        height: 350px;
+    }
 }
 
-.border-6 {
-    border-width: 6px;
+@media (max-width: 990px) {
+    #about .content-about p {
+        padding-right: 0;
+    }
+    #about .pictures {
+        width: 200px;
+        height: 300px;
+    }
+}
+
+@media (max-width: 950px) {
+    #about {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+    }
+    #about .content-about {
+        text-align: center;
+        padding: 0 90px;
+    }
+    #about .btn {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 650px) {
+    #about .content-about {
+        padding: 0 50px;
+    }
+    #about .btn {
+        padding: 8px 16px;
+    }
+    #about .pictures {
+        width: 180px;
+        height: 260px;
+    }
 }
 
 /* about */

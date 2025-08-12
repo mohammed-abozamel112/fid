@@ -9,18 +9,24 @@
         </p>
     </header>
 
-    <form id="send-verification" method="post" action="{{ route('verification.send') }}">
+    <form id="send-verification" method="post" action="{{ route('verification.send', ['lang' => app()->getLocale()]) }}">
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update', ['lang' => app()->getLocale()]) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
-            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            <x-input-label for="name_ar" :value="__('Name (Arabic)')" />
+            <x-text-input id="name_ar" name="name_ar" type="text" class="mt-1 block w-full" :value="old('name_ar', $user->name_ar)" required autofocus autocomplete="name_ar" />
+            <x-input-error class="mt-2" :messages="$errors->get('name_ar')" />
+        </div>
+
+        <div>
+            <x-input-label for="name_en" :value="__('Name (English)')" />
+            <x-text-input id="name_en" name="name_en" type="text" class="mt-1 block w-full" :value="old('name_en', $user->name_en)" required autocomplete="name_en" />
+            <x-input-error class="mt-2" :messages="$errors->get('name_en')" />
         </div>
 
         <div>
