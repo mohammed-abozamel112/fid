@@ -4,39 +4,60 @@ import Alpine from "alpinejs";
 window.Alpine = Alpine;
 Alpine.start();
 
-/* about  */
-const stack = document.querySelector("#about .stack");
-const cards = Array.from(stack.children)
-    .reverse()
-    .filter((child) => child.classList.contains("pictures"));
+// AJAX Service Filtering
+document.addEventListener('DOMContentLoaded', function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const tagsContainer = document.getElementById('tags-container');
+    const loadingSpinner = document.getElementById('loading-spinner');
 
-cards.forEach((card) => stack.appendChild(card));
+    // Get current language from URL
+    const lang = window.location.pathname.split('/')[1];
 
-function moveCard() {
-    const lastCard = stack.lastElementChild;
-    if (lastCard.classList.contains("pictures")) {
-        lastCard.classList.add("swap");
+    // Add click event listeners to filter buttons
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const filter = this.dataset.filter;
+            const url = filter === 'all'
+                ? `/${lang}/services/filter`
+                : `/${lang}/services/filter?filter=${filter}`;
 
-        setTimeout(() => {
-            lastCard.classList.remove("swap");
-            stack.insertBefore(lastCard, stack.firstElementChild);
-        }, 1200);
-    }
-}
+            // Show loading spinner
+            loadingSpinner.classList.remove('hidden');
+            tagsContainer.classList.add('opacity-50');
 
-let autoplayInterval = setInterval(moveCard, 4000);
+            // Update active button styles
+            filterButtons.forEach(btn => {
+                btn.classList.remove('bg-[#A31621]', 'text-white');
+                btn.classList.add('bg-[#A31621]/10', 'text-[#A31621]');
+            });
+            this.classList.remove('bg-[#A31621]/10', 'text-[#A31621]');
+            this.classList.add('bg-[#A31621]', 'text-white');
 
-stack.addEventListener("click", function (e) {
-    const card = e.target.closest(".pictures");
-    if (card && card === stack.lastElementChild) {
-        card.classList.add("swap");
+            // Make AJAX request
+            fetch(url, {
+                headers: {
+                    'X-Requested-With': 'XMLHttpRequest',
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Update the tags container with new content
+                tagsContainer.innerHTML = data.html;
 
-        setTimeout(() => {
-            card.classList.remove("swap");
-            stack.insertBefore(card, stack.firstElementChild);
-        }, 1200);
-    }
+                // Hide loading spinner
+                loadingSpinner.classList.add('hidden');
+                tagsContainer.classList.remove('opacity-50');
+
+                // Smooth scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                loadingSpinner.classList.add('hidden');
+                tagsContainer.classList.remove('opacity-50');
+            });
+        });
+    });
 });
-
-/* about  */
-/*  */

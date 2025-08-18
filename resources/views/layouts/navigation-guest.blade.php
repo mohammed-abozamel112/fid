@@ -1,3 +1,6 @@
+@php
+    $isRtl = app()->getLocale() === 'ar';
+@endphp
 <header class="w-full fixed top-0 lg:max-w-4xl max-w-[335px] text-sm not-has-[nav]:hidden z-50">
     @if (Route::has('login'))
         <nav class="fixed top-0 z-50 w-full bg-transparent text-[#A31621] shadow-md">
@@ -33,20 +36,52 @@
                         @endphp
                         @foreach ($navLinks as $link)
                             <a href="{{ $link['href'] }}"
-                                class="cursor-pointer px-3 py-2 text-sm font-medium nav-scroll-trigger
+                                class="min-w-max cursor-pointer px-3 py-2 text-sm font-medium nav-scroll-trigger
                                     {{ $activeLink === $link['href'] ? 'border-b-2 border-blue-500 text-[#A31621]' : 'text-[#A31621] hover:border-b-2 hover:border-blue-500' }}">
                                 {{ $link['name'] }}
                             </a>
                         @endforeach
                         <a href="#" target="_blank"
-                            class="bg-[#A31621] hover:bg-red-700 text-white px-6 py-1 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">
+                            class="min-w-max bg-[#A31621] hover:bg-red-700 text-white px-6 py-1 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">
                             {{ app()->getLocale() === 'en' ? 'Connect' : 'تواصل معنا' }}
                         </a>
 
                         {{--  button to change lang --}}
-                        <a href="{{ url(app()->getLocale() === 'ar' ? 'en' : 'ar') }}">
+                        {{--  <a
+                            href="{{ route(Route::currentRouteName(), ['lang' => app()->getLocale() === 'ar' ? 'en' : 'ar', 'tag' => request()->route('tag'),'blog'=>request()->route('blog')]) }}">
                             {{ app()->getLocale() === 'ar' ? 'English' : 'العربية' }}
-                        </a>
+                        </a> --}}
+                        @php
+                            // Define languages
+                            $locales = ['en' => 'English', 'ar' => 'العربية'];
+                            $currentLocale = app()->getLocale();
+                            $nextLocale = $currentLocale === 'en' ? 'ar' : 'en';
+
+                            // Get current route info
+                            $currentRoute = request()->route();
+                            $currentRouteName = $currentRoute->getName();
+                            $currentRouteParameters = $currentRoute->parameters();
+
+                            // Merge parameters with new lang
+                            $params = array_merge($currentRouteParameters, ['lang' => $nextLocale]);
+
+                            try {
+                                $url = route($currentRouteName, $params);
+                            } catch (\Exception $e) {
+                                $url = url('/' . $nextLocale);
+                            }
+                        @endphp
+
+                        <div class="flex items-center w-full {{ $isRtl ? 'sm:me-6' : 'sm:ms-6' }}">
+                            <a href="{{ $url }}"
+                                class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md
+              text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                {{ app()->getLocale() === 'en' ? 'العربية' : 'English' }}
+                            </a>
+                        </div>
+
+
+
 
                     </div>
 
@@ -84,39 +119,70 @@
                     class="mt-2 w-full rounded-md bg-gradient-to-r from-purple-600 to-blue-500 px-4 py-2 transition-colors duration-300 hover:from-blue-500 hover:to-purple-600">
                     Connect
                 </button>
+                @php
+                    // Define languages
+                    $locales = ['en' => 'English', 'ar' => 'العربية'];
+                    $currentLocale = app()->getLocale();
+                    $nextLocale = $currentLocale === 'en' ? 'ar' : 'en';
+
+                    // Get current route info
+                    $currentRoute = request()->route();
+                    $currentRouteName = $currentRoute->getName();
+                    $currentRouteParameters = $currentRoute->parameters();
+
+                    // Merge parameters with new lang
+                    $params = array_merge($currentRouteParameters, ['lang' => $nextLocale]);
+
+                    try {
+                        $url = route($currentRouteName, $params);
+                    } catch (\Exception $e) {
+                        $url = url('/' . $nextLocale);
+                    }
+                @endphp
+
+                <div class="flex items-center w-full">
+                    <a href="{{ $url }}"
+                        class="w-full inline-flex justify-center items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md
+              text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                        {{ app()->getLocale() === 'en' ? 'العربية' : 'English' }}
+                    </a>
+                </div>
+
+
+
             </div>
-    </nav>
-@endif
+        </nav>
+    @endif
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const links = document.querySelectorAll(".nav-scroll-trigger");
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const links = document.querySelectorAll(".nav-scroll-trigger");
 
-        function setActiveLink(hash) {
+            function setActiveLink(hash) {
+                links.forEach(link => {
+                    if (link.hash === hash) {
+                        link.classList.add("border-b-2", "border-[#A31621]", "text-[#A31621]");
+                        link.classList.remove("text-[#A31621]");
+                    } else {
+                        link.classList.remove("border-b-2", "border-[#A31621]", "text-[#A31621]");
+                        link.classList.add("text-[#A31621]");
+                    }
+                });
+            }
+
+            // Click → update active
             links.forEach(link => {
-                if (link.hash === hash) {
-                    link.classList.add("border-b-2", "border-[#A31621]", "text-[#A31621]");
-                    link.classList.remove("text-[#A31621]");
-                } else {
-                    link.classList.remove("border-b-2", "border-[#A31621]", "text-[#A31621]");
-                    link.classList.add("text-[#A31621]");
-                }
+                link.addEventListener("click", function() {
+                    setActiveLink(this.hash);
+                });
             });
-        }
 
-        // Click → update active
-        links.forEach(link => {
-            link.addEventListener("click", function() {
-                setActiveLink(this.hash);
-            });
+            // If page opens with a hash
+            if (window.location.hash) {
+                setActiveLink(window.location.hash);
+            }
         });
-
-        // If page opens with a hash
-        if (window.location.hash) {
-            setActiveLink(window.location.hash);
-        }
-    });
-</script>
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const menuButton = document.getElementById('mobile-menu-button');

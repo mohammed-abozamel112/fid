@@ -165,7 +165,7 @@
             <p class="text-[clamp(0.9rem,4vw,1.2rem)] pe-[100px] max-[1200px]:pe-10 max-[990px]:pe-0 pb-8">
                 {{ app()->getLocale() === 'en' ? 'Welcome to our digital agency where every project is a journey into the exquisite world of creative solutions. We are dedicated to bringing you the most innovative and beautifully designed digital experiences that will delight your senses and elevate your brand.' : 'مرحبًا بكم في وكالتنا الرقمية حيث كل مشروع هو رحلة إلى عالم الحلول الإبداعية الرائعة. نحن ملتزمون بتقديم أكثر التجارب الرقمية ابتكارًا وتصميمًا جماليًا التي ستسعد حواسكم وتعزز علامتكم التجارية.' }}
             </p>
-            <a href="#contact"
+            <a href="{{ route('about', app()->getLocale()) }}"
                 class="bg-[#A31621] hover:bg-red-700 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">
                 {{ app()->getLocale() === 'en' ? 'Explore More' : 'اكتشف المزيد' }}
             </a>
@@ -193,26 +193,25 @@
         id="services">
         {{-- section for services --}}
         {{-- Section Header --}}
-                <div class="text-center mb-16">
-                    <div
-                        class="inline-flex items-center px-4 py-2 rounded-full bg-[#A31621]/10 text-[#A31621] text-sm font-medium mb-6">
-                        <span class="w-2 h-2 bg-[#A31621] rounded-full mr-2 animate-pulse"></span>
-                        {{ app()->getLocale() === 'en' ? 'Our Services' : 'خدماتنا' }}
-                    </div>
-                    <h2 class="text-4xl md:text-5xl font-bold text-[#A31621] mb-6">
-                        {{ app()->getLocale() === 'en' ? 'Innovative Solutions' : 'حلول مبتكرة' }}
-                        <span
-                            class="text-gradient">
-                            {{ app()->getLocale() === 'en' ? 'in the Industry' : 'في الصناعة' }}
-                        </span>
-                    </h2>
-                    <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                        {{ app()->getLocale() === 'en'
-                            ? 'Explore our diverse range of services designed to elevate your brand and drive success. From web development to digital marketing, we have the expertise to help you thrive.'
-                            : 'استكشف مجموعة خدماتنا المتنوعة المصممة لرفع مستوى علامتك التجارية ودفع النجاح. من تطوير الويب إلى التسويق الرقمي، لدينا الخبرة لمساعدتك على الازدهار.' }}
-                    </p>
-                </div>
-                {{-- End Section Header --}}
+        <div class="text-center mb-16">
+            <div
+                class="inline-flex items-center px-4 py-2 rounded-full bg-[#A31621]/10 text-[#A31621] text-sm font-medium mb-6">
+                <span class="w-2 h-2 bg-[#A31621] rounded-full mr-2 animate-pulse"></span>
+                {{ app()->getLocale() === 'en' ? 'Our Services' : 'خدماتنا' }}
+            </div>
+            <h2 class="text-4xl md:text-5xl font-bold text-[#A31621] mb-6">
+                {{ app()->getLocale() === 'en' ? 'Innovative Solutions' : 'حلول مبتكرة' }}
+                <span class="text-gradient">
+                    {{ app()->getLocale() === 'en' ? 'in the Industry' : 'في الصناعة' }}
+                </span>
+            </h2>
+            <p class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+                {{ app()->getLocale() === 'en'
+                    ? 'Explore our diverse range of services designed to elevate your brand and drive success. From web development to digital marketing, we have the expertise to help you thrive.'
+                    : 'استكشف مجموعة خدماتنا المتنوعة المصممة لرفع مستوى علامتك التجارية ودفع النجاح. من تطوير الويب إلى التسويق الرقمي، لدينا الخبرة لمساعدتك على الازدهار.' }}
+            </p>
+        </div>
+        {{-- End Section Header --}}
         <div class="section">
             <div class="section-wrapper py-5">
                 <div class="content-wrapper py-3">
@@ -231,14 +230,18 @@
 
                                 {{-- tags max 3 per col --}}
                                 <div class="my-2 py-5 grid grid-cols-3 gap-2" id="tags">
+
                                     @foreach ($service->tags as $tag)
-                                        <a href="{{ $tag->url }}"
+                                        {{--  @php
+                                        dd($tag)
+                                    @endphp --}}
+                                        <a href="{{ route('tags.show', ['lang' => app()->getLocale(), 'tag' => $tag->id]) }}"
                                             class="border border-[#f3f3f3] hover:border-[#A31621] text-[#A31621]
           bg-gradient-to-br from-[#FCF7F8] via-white to-red-50
           hover:bg-none hover:bg-[#A31621] hover:text-white
           px-3 py-3 rounded-full text-sm font-medium
           transition-all duration-700 ease-in-out    hover:shadow-lg group text-center"
-                                            target="_blank" rel="noopener noreferrer">
+                                            target="_self" rel="noopener noreferrer">
                                             {{ $tag->name }}
                                         </a>
                                     @endforeach
@@ -618,7 +621,8 @@
                         <a class="w-full h-full"
                             href="{{ route('blogs.show', ['lang' => app()->getLocale(), 'blog' => $post->id]) }}">
                             @if ($post->image)
-                                <img loading="lazy" src="{{ $post->image ? $post->image : asset('storage/' . $post->image) }}"
+                                <img loading="lazy"
+                                    src="{{ $post->image ? $post->image : asset('storage/' . $post->image) }}"
                                     onerror="this.onerror=null; this.src='{{ asset('storage/main.png') }}'"
                                     alt="{{ $post->title }}" class="w-full h-full object-cover hover:blur-sm" />
                             @endif
@@ -626,7 +630,7 @@
                                 <h3 class="text-2xl font-bold mb-2">{{ $post->title }}</h3>
                                 <p class="text-gray-300 mb-4">
                                     {{ Str::limit($post->short_description, 150) }}</p>
-                                <a
+                                <a href="{{ route('blogs.show', ['lang' => app()->getLocale(), 'blog' => $post->id]) }}"
                                     class="bg-[#A31621] hover:bg-red-700 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">{{ app()->getLocale() === 'en' ? 'Read More' : 'اعرف المزيد' }}</a>
                             </div>
                         </a>

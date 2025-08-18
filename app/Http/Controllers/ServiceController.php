@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use App\Http\Requests\StoreServiceRequest;
 use App\Http\Requests\UpdateServiceRequest;
+use App\Models\Tag;
 
 class ServiceController extends Controller
 {
@@ -13,9 +14,24 @@ class ServiceController extends Controller
      */
     public function index($lang)
     {
-        $services = Service::latest()->paginate(10);
-        return view('services.index', compact('services'));
+        // Get all services with their tags (for the filter buttons)
+        $services = Service::with('tags')->get();
+
+        // Handle the filtering logic
+        if (request()->has('filter')) {
+            // Get tags for the specific service if filter is applied
+            $filteredTags = Service::findOrFail(request('filter'))->tags;
+        } else {
+            // Get all unique tags if no filter is applied
+            $filteredTags = Tag::all()->unique('id');
+            // Or if you want only tags that belong to services:
+            // $filteredTags = Tag::whereHas('service')->get()->unique('id');
+        }
+
+        return view('services.index', compact('services', 'filteredTags'));
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -67,6 +83,37 @@ class ServiceController extends Controller
             $service->update(['image' => $path]);
         }
         return redirect()->route('services.index', ['lang' => $lang])->with('success', 'Service updated successfully.');
+    }
+
+    /**
+     * Filter services via AJAX.
+     */
+    public function filter($lang)
+    {
+        // Handle the filtering logic for AJAX
+        if (request()->has('filter')) {
+            // Get tags for the specific service if filter is applied
+            $filteredTags = Service::findOrFail(request('filter'))->tags;
+        } else {
+            // Get all unique tags if no filter is applied
+            $filteredTags = Tag::all()->unique('id');
+        }
+
+        // Return JSON response for AJAX
+        return response()->json([
+            'tags' => $filteredTags->map(function ($tag) {
+                return [
+                    'id' => $tag->id,
+                    'name' => $tag->name,
+                    'description' => $tag->description,
+                    'image' => $tag->image,
+                    'link' => $tag->link,
+                ];
+            }),
+            'html' => view('services.partials.tags', [
+                'filteredTags' => $filteredTags
+            ])->render()
+        ]);
     }
 
     /**

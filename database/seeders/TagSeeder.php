@@ -19,14 +19,14 @@ class TagSeeder extends Seeder
                 'name_ar' => 'تصميم مواقع إبداعي',
                 'description_en' => 'Innovative and visually stunning website designs.',
                 'description_ar' => 'تصاميم مواقع مبتكرة وجذابة بصريًا.',
-                'url' => 'creative-web-design',
+                
             ],
             [
                 'name_en' => 'Web development',
                 'name_ar' => 'تطوير المواقع',
                 'description_en' => 'Professional and scalable web development solutions.',
                 'description_ar' => 'حلول تطوير مواقع احترافية وقابلة للتوسع.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 2,
                 //blog_id
@@ -37,7 +37,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'كتابة المحتوى',
                 'description_en' => 'Compelling copy that resonates with your audience.',
                 'description_ar' => 'كتابة محتوى جذاب يتوافق مع جمهورك.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 1,
                 //blog_id
@@ -48,7 +48,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'التجارة الإلكترونية',
                 'description_en' => 'Custom online stores to boost your sales.',
                 'description_ar' => 'متاجر إلكترونية مخصصة لزيادة مبيعاتك.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 2,
                 //blog_id
@@ -59,7 +59,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'ووردبريس',
                 'description_en' => 'Flexible and easy-to-manage WordPress websites.',
                 'description_ar' => 'مواقع ووردبريس مرنة وسهلة الإدارة.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 2,
 
@@ -69,7 +69,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'استراتيجية العلامة التجارية',
                 'description_en' => 'Strategic planning to grow your brand.',
                 'description_ar' => 'تخطيط استراتيجي لنمو علامتك التجارية.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 3,
 
@@ -79,7 +79,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'أسلوب الكتابة',
                 'description_en' => 'Defining your brand’s unique communication style.',
                 'description_ar' => 'تحديد أسلوب الاتصال الفريد لعلامتك التجارية.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 1,
             ],
@@ -88,7 +88,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'الهوية البصرية',
                 'description_en' => 'Creating a memorable visual brand identity.',
                 'description_ar' => 'إنشاء هوية بصرية مميزة للعلامة التجارية.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 3,
             ],
@@ -97,7 +97,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'الرسوم المتحركة',
                 'description_en' => 'Engaging motion graphics to tell your story.',
                 'description_ar' => 'رسوم متحركة جذابة لعرض قصتك.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 3,
             ],
@@ -106,7 +106,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'حملات إبداعية',
                 'description_en' => 'Unique campaigns that capture attention.',
                 'description_ar' => 'حملات مميزة تلفت الانتباه.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 1,
             ],
@@ -115,7 +115,7 @@ class TagSeeder extends Seeder
                 'name_ar' => 'الدعم التسويقي',
                 'description_en' => 'Ongoing marketing assistance to grow your business.',
                 'description_ar' => 'دعم تسويقي مستمر لتنمية أعمالك.',
-                'url' => 'creative-web-design',
+                
                 //service_id
                 'service_id' => 1,
             ],

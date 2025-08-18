@@ -11,18 +11,18 @@ class TagController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($lang)
     {
         $tags = Tag::latest()->paginate(10);
-        return view('tags.index', compact('tags'));
+        return view('tags.index', compact('tags', 'lang'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($lang)
     {
-        return view('tags.create');
+        return view('tags.create', ['lang' => $lang]);
     }
 
     /**
@@ -37,7 +37,7 @@ class TagController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tag $tag)
+    public function show($lang, Tag $tag)
     {
         return view('tags.show', compact('tag'));
     }
@@ -45,7 +45,7 @@ class TagController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tag $tag)
+    public function edit($lang, Tag $tag)
     {
         return view('tags.edit', compact('tag'));
     }
@@ -53,18 +53,18 @@ class TagController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTagRequest $request, Tag $tag)
+    public function update(UpdateTagRequest $request,$lang, Tag $tag)
     {
         $tag->update($request->validated());
-        return redirect()->route('tags.index', ['lang' => app()->getLocale()])->with('success', 'Tag updated successfully.');
+        return redirect()->route('tags.index', ['lang' => $lang])->with('success', 'Tag updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag)
+    public function destroy($lang, Tag $tag)
     {
         $tag->delete();
-        return redirect()->route('tags.index', ['lang' => app()->getLocale()])->with('success', 'Tag deleted successfully.');
+        return redirect()->route('tags.index', ['lang' => $lang])->with('success', 'Tag deleted successfully.');
     }
 }

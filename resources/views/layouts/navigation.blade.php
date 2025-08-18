@@ -2,7 +2,8 @@
     $isRtl = app()->getLocale() === 'ar';
 @endphp
 
-<nav x-data="{ open: false }" :dir="$isRtl ? 'rtl' : 'ltr'" class="bg-gradient-to-br from-[#FCF7F8] via-white to-red-50 w-full fixed z-50">
+<nav x-data="{ open: false }" :dir="$isRtl ? 'rtl' : 'ltr'"
+    class="bg-gradient-to-br from-[#FCF7F8] via-white to-red-50 w-full fixed z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div :class="{ 'flex-row-reverse': $isRtl, 'flex-row': !$isRtl }" class="flex justify-between h-16">
             <div class="flex">
@@ -136,8 +137,7 @@
 
                 <form method="POST" action="{{ route('logout', ['lang' => app()->getLocale()]) }}">
                     @csrf
-                    <x-responsive-nav-link :href="route('logout', ['lang' => app()->getLocale()])"
-                        @click.prevent="event.target.closest('form').submit()">
+                    <x-responsive-nav-link :href="route('logout', ['lang' => app()->getLocale()])" @click.prevent="event.target.closest('form').submit()">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
                 </form>
