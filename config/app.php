@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env(app()->getLocale()==='en' ? 'Fid Marketing Company' : 'شركة فيد للتسويق'),
 
     /*
     |--------------------------------------------------------------------------

@@ -85,23 +85,12 @@
     @endauth
 
     @guest
-        <div class="container mx-auto p-4">
+        <section class="w-full min-h-screen flex flex-col justify-center items-center" style="background: url('{{ asset('storage/servicesmain.png') }}'); background-size: cover; background-position: center;">
             <h1 class="text-3xl font-bold mb-6">{{ __('Our Services') }}</h1>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                @foreach ($services as $service)
-                    <div class="bg-white rounded-lg shadow-md overflow-hidden">
-                        <img onerror="this.onerror=null; this.src='{{ asset('storage/main.png') }}'"
-                            src="{{ asset('storage/' . $service->image) }}" alt="{{ $service->name }}"
-                            class="w-full h-48 object-cover">
-                        <div class="p-4">
-                            <h2 class="text-xl font-semibold mb-2">{{ $service->name }}</h2>
-                            <p class="text-gray-600 mb-2">{{ $service->short_description }}</p>
-                            <p class="text-green-600 font-bold">${{ number_format($service->price, 2) }}</p>
-                        </div>
-                    </div>
-                @endforeach
-            </div>
-        </div>
+            <p class="text-lg text-center">{{ __('Explore our range of services tailored to your needs.') }}</p>
+
+
+        </section>
         {{--  create a filter of services to show only their tags  --}}
         {{-- Filter Buttons --}}
         <div class="mb-8">
