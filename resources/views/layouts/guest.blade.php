@@ -148,7 +148,7 @@
 
                                 <li>
                                     <a class="text-[#A31621] transition hover:text-[#A31621]/75"
-                                        href="{{ route('contact.index', ['lang' => app()->getLocale()]) }}">
+                                        href="{{ route('contact', ['lang' => app()->getLocale()]) }}">
                                         {{ app()->getLocale() === 'en' ? 'Contact Us' : 'تواصل معنا' }}
                                     </a>
                                 </li>

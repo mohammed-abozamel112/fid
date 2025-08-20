@@ -60,7 +60,9 @@ Route::prefix('{lang}')->middleware(SetLocale::class)->group(function () {
     });
     //about view
     Route::view('about', 'about.index')->name('about');
-    Route::view('contact', 'contact.index')->name('index');
-    Route::get('/contact', [ContactController::class, 'show'])->name('contact.form');
-    Route::post('/contact', [ContactController::class, 'submit'])->name('contact.submit');
+    // contact
+    Route::prefix('contact')->as('contact.')->group(function () {
+        Route::get('/', [ContactController::class, 'index'])->name('index');
+        Route::post('/', [ContactController::class, 'submit'])->name('submit');
+    });
 });

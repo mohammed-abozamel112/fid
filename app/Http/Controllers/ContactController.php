@@ -10,23 +10,9 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 class ContactController extends Controller
 {
-    public function show()
+    public function index()
     {
-        $isRtl = in_array(app()->getLocale(), ['ar', 'en']); // Add RTL languages as needed
-        $textAlign = $isRtl ? 'text-right' : 'text-left';
-        $marginRight = $isRtl ? 'ml-2' : 'mr-2';
-        $flexReverse = $isRtl ? 'flex-row-reverse' : '';
-        $spaceReverse = $isRtl ? 'space-x-reverse' : '';
-        $borderLeft = $isRtl ? 'border-r-4' : 'border-l-4';
-
-        return view('contact.index', compact(
-            'isRtl',
-            'textAlign',
-            'marginRight',
-            'flexReverse',
-            'spaceReverse',
-            'borderLeft'
-        ));
+        return view('contact.index');
     }
 
     public function submit(ContactFormRequest $request)
