@@ -12,7 +12,7 @@ class ContactController extends Controller
 {
     public function show()
     {
-        $isRtl = in_array(app()->getLocale(), ['ar', 'fa', 'ur']); // Add RTL languages as needed
+        $isRtl = in_array(app()->getLocale(), ['ar', 'en']); // Add RTL languages as needed
         $textAlign = $isRtl ? 'text-right' : 'text-left';
         $marginRight = $isRtl ? 'ml-2' : 'mr-2';
         $flexReverse = $isRtl ? 'flex-row-reverse' : '';
@@ -33,7 +33,7 @@ class ContactController extends Controller
     {
         try {
             $contactData = $request->validated();
-            $isRtl = in_array(app()->getLocale(), ['ar', 'fa', 'ur']);
+            $isRtl = in_array(app()->getLocale(), ['ar', 'en']);
 
             // Send confirmation email to the sender
             Mail::to($contactData['email'])->send(new ContactConfirmation($contactData, $isRtl));
