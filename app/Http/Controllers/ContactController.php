@@ -19,7 +19,7 @@ class ContactController extends Controller
         $spaceReverse = $isRtl ? 'space-x-reverse' : '';
         $borderLeft = $isRtl ? 'border-r-4' : 'border-l-4';
 
-        return view('contact', compact(
+        return view('contact.index', compact(
             'isRtl',
             'textAlign',
             'marginRight',
