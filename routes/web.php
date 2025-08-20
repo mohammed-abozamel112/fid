@@ -61,6 +61,6 @@ Route::prefix('{lang}')->middleware(SetLocale::class)->group(function () {
     Route::view('about', 'about.index')->name('about');
     Route::view('contact', 'contact.index')->name('contact');
     /* route('contact.submit' */
-    Route::post('contact', [SendMailController::class, 'send'])->name('contact.submit');
+    Route::post('contact', [SendMailController::class, 'submit'])->name('contact.submit');
 
 });
