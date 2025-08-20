@@ -4,7 +4,7 @@
         $dir = $isRtl ? 'rtl' : 'ltr';
         $textAlign = $isRtl ? 'text-right' : 'text-left';
         $textAlignCenter = 'text-center';
-        $flexReverse = $isRtl ? 'flex-row-reverse' : 'flex-row';
+        $flexReverse = $isRtl ? 'flex-row' : 'flex-row';
         $spaceReverse = $isRtl ? 'space-x-reverse' : '';
         $borderLeft = $isRtl ? 'border-r-4' : 'border-l-4';
         $marginLeft = $isRtl ? 'mr-2' : 'ml-2';
@@ -89,7 +89,7 @@
                                             {{ session('error') }}
                                         </div>
                                     @endif
-                                   
+
                                         <div class="grid md:grid-cols-2 gap-6">
                                             <div>
                                                 <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
