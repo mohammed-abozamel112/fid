@@ -14,8 +14,8 @@ class ServiceController extends Controller
      */
     public function index($lang)
     {
-        // Get all services with their tags (for the filter buttons)
-        $services = Service::with('tags')->get();
+        // Get all services with their tags (for the filter buttons) with pagination
+        $services = Service::with('tags')->paginate(10);
 
         // Handle the filtering logic
         if (request()->has('filter')) {
