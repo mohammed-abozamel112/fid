@@ -8,6 +8,7 @@ use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TagController;
 use App\Http\Middleware\SetLocale;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 
@@ -64,5 +65,24 @@ Route::prefix('{lang}')->middleware(SetLocale::class)->group(function () {
     Route::prefix('contact')->as('contact.')->group(function () {
         Route::get('/', [ContactController::class, 'index'])->name('index');
         Route::post('/', [ContactController::class, 'submit'])->name('submit');
+    });
+    Route::get('/test-email', function () {
+        try {
+            // اختبار إرسال بريد إلى نفسك
+            Mail::raw('This is a test email from Laravel', function ($message) {
+                $message->to(env('MAIL_ADMIN_EMAIL'))
+                    ->subject('Test Email from Laravel');
+            });
+
+            // اختبار إرسال بريد باستخدام Mailtrap
+            Mail::raw('This is a test email to Mailtrap', function ($message) {
+                $message->to('test@example.com')
+                    ->subject('Test Email to Mailtrap');
+            });
+
+            return 'Emails sent successfully! Check your Mailtrap inbox.';
+        } catch (\Exception $e) {
+            return 'Error: ' . $e->getMessage();
+        }
     });
 });
