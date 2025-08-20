@@ -68,38 +68,38 @@
             
             <div class="field">
                 <div class="label">Name:</div>
-                <div class="value">{{ $name }}</div>
+                <div class="value">{{ $data['name'] }}</div>
             </div>
             
             <div class="field">
                 <div class="label">Email:</div>
-                <div class="value">{{ $email }}</div>
+                <div class="value">{{ $data['email'] }}</div>
             </div>
             
             <div class="field">
                 <div class="label">Phone:</div>
-                <div class="value">{{ $phone ?? 'Not provided' }}</div>
+                <div class="value">{{ $data['phone'] ?? 'Not provided' }}</div>
             </div>
             
             <div class="field">
                 <div class="label">Company:</div>
-                <div class="value">{{ $company ?? 'Not provided' }}</div>
+                <div class="value">{{ $data['company'] ?? 'Not provided' }}</div>
             </div>
             
             <div class="field">
                 <div class="label">Subject:</div>
-                <div class="value">{{ $subject }}</div>
+                <div class="value">{{ $data['subject'] }}</div>
             </div>
             
             <div class="field">
                 <div class="label">Message:</div>
-                <div class="value" style="white-space: pre-line;">{{ $message }}</div>
+                <div class="value" style="white-space: pre-line;">{{ $data['message'] }}</div>
             </div>
         </div>
         
         <div class="footer">
             <p>This email was sent from the contact form on FID Company website.</p>
-            <p>Please respond to {{ $email }} to follow up with the sender.</p>
+            <p>Please respond to {{ $data['email'] }} to follow up with the sender.</p>
         </div>
     </div>
 </body>

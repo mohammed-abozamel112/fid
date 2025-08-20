@@ -54,14 +54,14 @@ class SendMailController extends Controller
         ];
 
         // Send email to admin
-        Mail::send('emails.contact', $emailData, function($message) use ($emailData) {
+        Mail::send('emails.contact', ['data' => $emailData], function($message) use ($emailData) {
             $message->from($emailData['email'], $emailData['name']);
             $message->to('contact@fidcompany.com');
             $message->subject('Contact Form: ' . $emailData['subject']);
         });
 
         // Send confirmation email to user
-        Mail::send('emails.confirmation', $emailData, function($message) use ($emailData) {
+        Mail::send('emails.confirmation', ['data' => $emailData], function($message) use ($emailData) {
             $message->from('contact@fidcompany.com', 'FID Company');
             $message->to($emailData['email']);
             $message->subject('Thank you for contacting us');
