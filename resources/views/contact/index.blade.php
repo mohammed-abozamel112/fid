@@ -1,4 +1,7 @@
 <x-master-layout>
+    @php
+    $isRtl = app()->getLocale() === 'ar';
+    @endphp
     <div class="min-h-screen" style="background-color: #fcf7f9;">
         <!-- Hero Section -->
         <section class="relative py-20 px-4 sm:px-6 lg:px-8">
