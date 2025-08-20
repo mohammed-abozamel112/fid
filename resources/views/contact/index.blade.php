@@ -55,7 +55,7 @@
                                 </p>
                             </div>
                             <div class="p-6 pt-0">
-                                <form action="{{ route('contact.submit') }}" method="POST" class="space-y-6">
+                                <form action="{{ route('contact.submit', ['lang' => app()->getLocale()]) }}" method="POST" class="space-y-6">
                                     @csrf
                                     <div class="grid md:grid-cols-2 gap-6">
                                         <div>
