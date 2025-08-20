@@ -3,6 +3,7 @@
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SendMailController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TagController;
 use App\Http\Middleware\SetLocale;
@@ -59,5 +60,7 @@ Route::prefix('{lang}')->middleware(SetLocale::class)->group(function () {
     //about view
     Route::view('about', 'about.index')->name('about');
     Route::view('contact', 'contact.index')->name('contact');
+    /* route('contact.submit' */
+    Route::post('contact', [SendMailController::class, 'send'])->name('contact.submit');
 
 });

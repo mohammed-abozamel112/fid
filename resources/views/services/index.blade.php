@@ -85,7 +85,8 @@
     @endauth
 
     @guest
-        <section class="w-full min-h-screen flex flex-col justify-center items-center" style="background: url('{{ asset('storage/servicesmain.png') }}'); background-size: cover; background-position: center;">
+        <section class="w-full min-h-screen flex flex-col justify-center items-center"
+            style="background: url('{{ asset('storage/servicesmain.png') }}'); background-size: cover; background-position: center;">
             <h1 class="text-3xl font-bold mb-6">{{ __('Our Services') }}</h1>
             <p class="text-lg text-center">{{ __('Explore our range of services tailored to your needs.') }}</p>
 
@@ -96,16 +97,14 @@
         <div class="mb-8">
             <div class="flex flex-wrap gap-2 w-full justify-center">
                 {{-- All Services Button --}}
-                <button type="button"
-                    data-filter="all"
+                <button type="button" data-filter="all"
                     class="filter-btn px-4 py-2 rounded-full {{ !request()->has('filter') ? 'bg-[#A31621] text-white' : 'bg-[#A31621]/10 text-[#A31621]' }} text-sm font-medium hover:bg-[#A31621]/20 transition">
                     {{ app()->getLocale() === 'en' ? 'All' : 'الكل' }}
                 </button>
 
                 {{-- Service Filter Buttons --}}
                 @foreach ($services as $service)
-                    <button type="button"
-                        data-filter="{{ $service->id }}"
+                    <button type="button" data-filter="{{ $service->id }}"
                         class="filter-btn px-4 py-2 rounded-full {{ request('filter') == $service->id ? 'bg-[#A31621] text-white' : 'bg-[#A31621]/10 text-[#A31621]' }} text-sm font-medium hover:bg-[#A31621]/20 transition">
                         {{ $service->name }}
                     </button>
