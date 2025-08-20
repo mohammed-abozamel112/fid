@@ -58,6 +58,6 @@ Route::prefix('{lang}')->middleware(SetLocale::class)->group(function () {
     });
     //about view
     Route::view('about', 'about.index')->name('about');
-    Route::view('contact', 'contact.index')->name('contact');
+    Route::view('contact', 'contact.contact')->name('contact');
 
 });
