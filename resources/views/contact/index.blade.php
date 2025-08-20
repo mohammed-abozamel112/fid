@@ -90,105 +90,105 @@
                                         </div>
                                     @endif
 
-                                        <div class="grid md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
-                                                    style="color: #A31621;">
-                                                    {{ $isRtl ? 'الاسم الكامل *' : 'Full Name *' }}
-                                                </label>
-                                                <input type="text" name="name" value="{{ old('name') }}"
-                                                    placeholder="{{ $isRtl ? 'أحمد محمد' : 'John Doe' }}" required
-                                                    class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
-                                                @error('name')
-                                                    <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
-                                                        {{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div>
-                                                <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
-                                                    style="color: #A31621;">
-                                                    {{ $isRtl ? 'عنوان البريد الإلكتروني *' : 'Email Address *' }}
-                                                </label>
-                                                <input type="email" name="email" value="{{ old('email') }}"
-                                                    placeholder="{{ $isRtl ? 'ahmed@company.com' : 'john@company.com' }}"
-                                                    required
-                                                    class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
-                                                @error('email')
-                                                    <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
-                                                        {{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                        <div class="grid md:grid-cols-2 gap-6">
-                                            <div>
-                                                <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
-                                                    style="color: #A31621;">
-                                                    {{ $isRtl ? 'رقم الهاتف' : 'Phone Number' }}
-                                                </label>
-                                                <input type="tel" name="phone" value="{{ old('phone') }}"
-                                                    placeholder="{{ $isRtl ? '+966 50 123 4567' : '+1 (555) 123-4567' }}"
-                                                    class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
-                                                @error('phone')
-                                                    <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
-                                                        {{ $message }}</p>
-                                                @enderror
-                                            </div>
-                                            <div>
-                                                <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
-                                                    style="color: #A31621;">
-                                                    {{ $isRtl ? 'الشركة' : 'Company' }}
-                                                </label>
-                                                <input type="text" name="company" value="{{ old('company') }}"
-                                                    placeholder="{{ $isRtl ? 'شركتك' : 'Your Company' }}"
-                                                    class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
-                                                @error('company')
-                                                    <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
-                                                        {{ $message }}</p>
-                                                @enderror
-                                            </div>
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
+                                                style="color: #A31621;">
+                                                {{ $isRtl ? 'الاسم الكامل *' : 'Full Name *' }}
+                                            </label>
+                                            <input type="text" name="name" value="{{ old('name') }}"
+                                                placeholder="{{ $isRtl ? 'أحمد محمد' : 'John Doe' }}" required
+                                                class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
+                                            @error('name')
+                                                <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
+                                                    {{ $message }}</p>
+                                            @enderror
                                         </div>
                                         <div>
                                             <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
                                                 style="color: #A31621;">
-                                                {{ $isRtl ? 'الموضوع *' : 'Subject *' }}
+                                                {{ $isRtl ? 'عنوان البريد الإلكتروني *' : 'Email Address *' }}
                                             </label>
-                                            <input type="text" name="subject" value="{{ old('subject') }}"
-                                                placeholder="{{ $isRtl ? 'كيف يمكننا مساعدتك؟' : 'How can we help you?' }}"
+                                            <input type="email" name="email" value="{{ old('email') }}"
+                                                placeholder="{{ $isRtl ? 'ahmed@company.com' : 'john@company.com' }}"
                                                 required
                                                 class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
-                                            @error('subject')
+                                            @error('email')
                                                 <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
-                                                    {{ $message }}
-                                                </p>
+                                                    {{ $message }}</p>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="grid md:grid-cols-2 gap-6">
+                                        <div>
+                                            <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
+                                                style="color: #A31621;">
+                                                {{ $isRtl ? 'رقم الهاتف' : 'Phone Number' }}
+                                            </label>
+                                            <input type="tel" name="phone" value="{{ old('phone') }}"
+                                                placeholder="{{ $isRtl ? '+966 50 123 4567' : '+1 (555) 123-4567' }}"
+                                                class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
+                                            @error('phone')
+                                                <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
+                                                    {{ $message }}</p>
                                             @enderror
                                         </div>
                                         <div>
                                             <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
                                                 style="color: #A31621;">
-                                                {{ $isRtl ? 'الرسالة *' : 'Message *' }}
+                                                {{ $isRtl ? 'الشركة' : 'Company' }}
                                             </label>
-                                            <textarea name="message" placeholder="{{ $isRtl ? 'أخبرنا عن مشروعك...' : 'Tell us about your project...' }}"
-                                                required rows="6"
-                                                class="border-2 focus:border-red-300 transition-colors resize-none w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}">{{ old('message') }}</textarea>
-                                            @error('message')
+                                            <input type="text" name="company" value="{{ old('company') }}"
+                                                placeholder="{{ $isRtl ? 'شركتك' : 'Your Company' }}"
+                                                class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
+                                            @error('company')
                                                 <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
-                                                    {{ $message }}
-                                                </p>
+                                                    {{ $message }}</p>
                                             @enderror
                                         </div>
-                                        <button type="submit"
-                                            class="w-full h-14 text-lg font-semibold transition-all duration-300 hover:scale-[1.02] disabled:scale-100 flex items-center justify-center"
-                                            style="background-color: #A31621; color: #fcf7f9;">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                                                viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                                class="h-5 w-5 {{ $marginRight }}">
-                                                <path d="m22 2-7 20-4-9-9-4Z" />
-                                                <path d="M22 2 11 13" />
-                                            </svg>
-                                            {{ $isRtl ? 'إرسال الرسالة' : 'Send Message' }}
-                                        </button>
-                                    </form>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
+                                            style="color: #A31621;">
+                                            {{ $isRtl ? 'الموضوع *' : 'Subject *' }}
+                                        </label>
+                                        <input type="text" name="subject" value="{{ old('subject') }}"
+                                            placeholder="{{ $isRtl ? 'كيف يمكننا مساعدتك؟' : 'How can we help you?' }}"
+                                            required
+                                            class="h-12 border-2 focus:border-red-300 transition-colors w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}" />
+                                        @error('subject')
+                                            <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-semibold mb-2 {{ $textAlign }}"
+                                            style="color: #A31621;">
+                                            {{ $isRtl ? 'الرسالة *' : 'Message *' }}
+                                        </label>
+                                        <textarea name="message" placeholder="{{ $isRtl ? 'أخبرنا عن مشروعك...' : 'Tell us about your project...' }}" required
+                                            rows="6"
+                                            class="border-2 focus:border-red-300 transition-colors resize-none w-full px-3 py-2 border-gray-300 rounded-md {{ $textAlign }}">{{ old('message') }}</textarea>
+                                        @error('message')
+                                            <p class="text-red-500 text-sm mt-1 {{ $textAlign }}">
+                                                {{ $message }}
+                                            </p>
+                                        @enderror
+                                    </div>
+                                    <button type="submit"
+                                        class="w-full h-14 text-lg font-semibold transition-all duration-300 hover:scale-[1.02] disabled:scale-100 flex items-center justify-center"
+                                        style="background-color: #A31621; color: #fcf7f9;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                            stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                                            class="h-5 w-5 {{ $marginRight }}">
+                                            <path d="m22 2-7 20-4-9-9-4Z" />
+                                            <path d="M22 2 11 13" />
+                                        </svg>
+                                        {{ $isRtl ? 'إرسال الرسالة' : 'Send Message' }}
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -222,7 +222,7 @@
                                     <div class="{{ $textAlign }}">
                                         <h3 class="font-semibold text-lg" style="color: #A31621;">
                                             {{ $isRtl ? 'راسلنا عبر البريد الإلكتروني' : 'Email Us' }}</h3>
-                                        <p class="text-gray-600">contact@fidcompany.com</p>
+                                        <a href="mailto:info@fid.sa" class="text-gray-600">info@fid.sa</a>
                                     </div>
                                 </div>
                             </div>
@@ -242,7 +242,7 @@
                                     <div class="{{ $textAlign }}">
                                         <h3 class="font-semibold text-lg" style="color: #A31621;">
                                             {{ $isRtl ? 'اتصل بنا' : 'Call Us' }}</h3>
-                                        <p class="text-gray-600">+1 (555) 123-4567</p>
+                                        <a href="tel:+966502057206" class="text-gray-600">+966 (50) 205 7206</a>
                                     </div>
                                 </div>
                             </div>
