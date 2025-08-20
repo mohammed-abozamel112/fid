@@ -6,7 +6,8 @@ use App\Http\Requests\ContactFormRequest;
 use App\Mail\ContactConfirmation;
 use App\Mail\ContactNotification;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 class ContactController extends Controller
 {
     public function show()
