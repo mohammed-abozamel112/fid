@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -26,27 +27,21 @@ class ContactNotification extends Mailable
         $this->isRtl = $isRtl;
     }
 
-    public function build()
-    {
-        $subject = $this->isRtl
-            ? 'رسالة تواصل جديدة: ' . $this->contactData['subject']
-            : 'New Contact Message: ' . $this->contactData['subject'];
-
-        return $this->subject($subject)
-            ->view('emails.contact-notification')
-            ->with([
-                'data' => $this->contactData,
-                'isRtl' => $this->isRtl
-            ]);
-    }
 
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
+        $subject = $this->isRtl
+            ? 'رسالة تواصل جديدة: ' . $this->contactData['subject']
+            : 'New Contact Message: ' . $this->contactData['subject'];
+
         return new Envelope(
-            subject: 'Contact Notification',
+            subject: $subject,
+            replyTo: [
+                new Address($this->contactData['email'], $this->contactData['name']),
+            ],
         );
     }
 
@@ -56,7 +51,11 @@ class ContactNotification extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.contact-notification',
+            with: [
+                'data' => $this->contactData,
+                'isRtl' => $this->isRtl,
+            ],
         );
     }
 

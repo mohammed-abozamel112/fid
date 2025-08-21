@@ -15,7 +15,7 @@ return [
     */
 
     'default' => env('MAIL_MAILER', 'smtp'),
-    'admin_email' => env('MAIL_ADMIN_EMAIL', 'adfid.smc@gmail.com'),
+    'admin_email' => env('MAIL_ADMIN_EMAIL', 'info@fid.sa'),
 
     /*
     |--------------------------------------------------------------------------
@@ -47,13 +47,6 @@ return [
             'password' => env('MAIL_PASSWORD'),
             'timeout' => null,
             'auth_mode' => null,
-            'stream' => [
-                'ssl' => [
-                    'allow_self_signed' => true,
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                ],
-            ],
         ],
 
         'ses' => [
@@ -118,8 +111,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'info@fid.sa'),
+        'name' => env('MAIL_FROM_NAME', 'FID Company'),
     ],
 
 ];

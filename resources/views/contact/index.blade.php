@@ -242,7 +242,7 @@
                                     <div class="{{ $textAlign }}">
                                         <h3 class="font-semibold text-lg" style="color: #A31621;">
                                             {{ $isRtl ? 'اتصل بنا' : 'Call Us' }}</h3>
-                                        <a href="tel:+966502057206" class="text-gray-600">+966 (50) 205 7206</a>
+                                        <a href="tel:+966502057206" class="text-gray-600">+966 50 205 7206</a>
                                     </div>
                                 </div>
                             </div>

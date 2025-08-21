@@ -47,7 +47,7 @@ class ContactController extends Controller
             Log::info('Confirmation email sent to: ' . $contactData['email']);
 
             // إرسال الإشعار إلى البريد الإداري
-            $adminEmail = config('mail.admin_email', 'adfid.smc@gmail.com');
+            $adminEmail = config('mail.admin_email', 'info@fid.sa');
 
             // التحقق من صحة البريد الإلكتروني للإدارة
             if (!filter_var($adminEmail, FILTER_VALIDATE_EMAIL)) {

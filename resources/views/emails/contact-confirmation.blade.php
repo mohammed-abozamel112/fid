@@ -78,8 +78,13 @@
         </div>
 
         <div class="footer">
-            <p>&copy; {{ date('Y') }} {{ config('app.name') }}.
-                {{ $isRtl ? 'جميع الحقوق محفوظة' : 'All rights reserved' }}.</p>
+            <p>&copy; {{ date('Y') }} {{ config('app.name') }}. {{ $isRtl ? 'جميع الحقوق محفوظة' : 'All rights reserved' }}.</p>
+            <p style="margin-top: 10px;">
+                <strong>{{ $isRtl ? 'البريد الإلكتروني:' : 'Email:' }}</strong>
+                <a href="mailto:info@fid.sa" style="color: white;">info@fid.sa</a> |
+                <strong>{{ $isRtl ? 'الهاتف:' : 'Phone:' }}</strong>
+                <a href="tel:+966502057206" style="color: white;">+966 50 205 7206</a>
+            </p>
         </div>
     </div>
 </body>

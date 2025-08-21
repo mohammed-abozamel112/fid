@@ -24,30 +24,17 @@ class ContactConfirmation extends Mailable
         $this->isRtl = $isRtl;
     }
 
-    public function build()
-    {
-        $subject = $this->isRtl
-            ? 'تأكيد استلام رسالتك - ' . config('app.name')
-            : 'Confirmation of Your Message - ' . config('app.name');
-
-        return $this->subject($subject)
-            ->view('emails.contact-confirmation')
-            ->with([
-                'data' => $this->contactData,
-                'isRtl' => $this->isRtl
-            ]);
-    }
-
-
-
-
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
+        $subject = $this->isRtl
+            ? 'تأكيد استلام رسالتك - ' . config('app.name')
+            : 'Confirmation of Your Message - ' . config('app.name');
+
         return new Envelope(
-            subject: 'Contact Confirmation',
+            subject: $subject,
         );
     }
 
@@ -57,7 +44,11 @@ class ContactConfirmation extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.contact-confirmation',
+            with: [
+                'data' => $this->contactData,
+                'isRtl' => $this->isRtl,
+            ],
         );
     }
 
