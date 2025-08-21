@@ -12,7 +12,7 @@
         </div>
     @endif
 
-    <form action="{{ route('blogs.update', $blog) }}" method="POST" enctype="multipart/form-data" class="max-w-lg">
+    <form action="{{ route('blogs.update', ['lang' => app()->getLocale(), 'blog' => $blog]) }}" method="POST" enctype="multipart/form-data" class="max-w-4xl">
         @csrf
         @method('PUT')
 
@@ -67,6 +67,17 @@
         @endforeach
 
         <div class="mb-4">
+            <label for="user_id" class="block text-gray-700 font-bold mb-2">Author</label>
+            <select name="user_id" id="user_id"
+                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                <option value="" {{ old('user_id', $blog->user_id) ? '' : 'selected' }}>Select Author</option>
+                @foreach (App\Models\User::orderBy('name')->pluck('name', 'id') as $id => $name)
+                    <option value="{{ $id }}" {{ old('user_id', $blog->user_id) == $id ? 'selected' : '' }}>{{ $name }}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="mb-4">
             <label for="status" class="block text-gray-700 font-bold mb-2">Status</label>
             <select name="status" id="status" required
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
@@ -86,10 +97,13 @@
                 class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
 
-        <div>
+        <div class="flex space-x-4">
             <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                 Update Blog
             </button>
+            <a href="{{ route('blogs.index', ['lang' => app()->getLocale()]) }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                Cancel
+            </a>
         </div>
     </form>
 </div>

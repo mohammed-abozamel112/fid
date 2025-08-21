@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 class BlogController extends Controller
 {
@@ -14,7 +15,10 @@ class BlogController extends Controller
     public function index()
     {
         //
-        $blogs = Blog::with('user')->latest()->paginate(10);
+        $blogs = Blog::with('tags')->latest()->paginate(10);
+        if (Auth::check()) {
+            $blogs = Blog::with('user', 'tags')->latest()->paginate(10);
+        }
         return view('blogs.index', compact('blogs'));
     }
 
@@ -33,14 +37,20 @@ class BlogController extends Controller
     public function store(StoreBlogRequest $request)
     {
         // Validate and store the blog data
-        $blog = Blog::create($request->validated());
-        // Optionally, you can handle file uploads or other processing here
-        // For example, if you have a file upload, you can handle it like this:
+        $validated = $request->validated();
+        
+        // Handle image upload
         if ($request->hasFile('image')) {
-            $blog->image = $request->file('image')->store('images/blogs', 'public');
-            $blog->save();
+            $validated['image'] = $request->file('image')->store('images/blogs', 'public');
         }
-        // Redirect to the index page with a success message
+        
+        // Set user_id if not provided
+        if (!isset($validated['user_id']) && Auth::check()) {
+            $validated['user_id'] = Auth::id();
+        }
+        
+        $blog = Blog::create($validated);
+        
         return redirect()->route('blogs.index', ['lang' => app()->getLocale()])->with('success', 'Blog created successfully.');
     }
 
@@ -66,15 +76,17 @@ class BlogController extends Controller
      */
     public function update(UpdateBlogRequest $request, Blog $blog)
     {
-        $blog->update($request->validated());
+        $validated = $request->validated();
 
         if ($request->hasFile('image')) {
             // Delete old image if exists
             if ($blog->image) {
                 Storage::disk('public')->delete($blog->image);
             }
-            $blog->update(['image' => $request->file('image')->store('images/blogs', 'public')]);
+            $validated['image'] = $request->file('image')->store('images/blogs', 'public');
         }
+
+        $blog->update($validated);
 
         return redirect()->route('blogs.index', ['lang' => app()->getLocale()])->with('success', 'Blog updated successfully.');
     }
@@ -82,7 +94,7 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy($lang, Blog $blog)
     {
         if ($blog->image) {
             Storage::disk('public')->delete($blog->image);

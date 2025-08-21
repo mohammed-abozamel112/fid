@@ -1,7 +1,7 @@
 <x-master-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            Create New Service
+            Create New Blog
         </h2>
     </x-slot>
 
@@ -54,9 +54,9 @@
             </div>
 
             <div>
-                <label for="sub_title1_ar" class="block text-sm font-medium text-gray-700">Sub Title 1
+                <label for="sub_title1_en" class="block text-sm font-medium text-gray-700">Sub Title 1
                     (English)</label>
-                <input type="text" name="sub_title1_ar" id="sub_title1_ar" value="{{ old('sub_title1_ar') }}"
+                <input type="text" name="sub_title1_en" id="sub_title1_en" value="{{ old('sub_title1_en') }}"
                     class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
             </div>
 
@@ -135,20 +135,21 @@
                 <input type="file" name="image" id="image"
                     class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
             </div>
-            <div class="mb-4">
-                <label for="user_id" class="block text-gray-700 font-bold mb-2">Author</label>
-                <select name="user_id" id="user_id" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-                    <option value="" disabled {{ old('user_id') ? '' : 'selected' }}>Select Author</option>
+            <div>
+                <label for="user_id" class="block text-sm font-medium text-gray-700">Author</label>
+                <select name="user_id" id="user_id"
+                    class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
+                    <option value="" {{ old('user_id') ? '' : 'selected' }}>Select Author</option>
                     @foreach (App\Models\User::orderBy('name')->pluck('name', 'id') as $id => $name)
                         <option value="{{ $id }}" {{ old('user_id') == $id ? 'selected' : '' }}>{{ $name }}</option>
                     @endforeach
                 </select>
             </div>
-            <div class="mb-4">
-                <label for="status" class="block text-gray-700 font-bold mb-2">Status</label>
+
+            <div>
+                <label for="status" class="block text-sm font-medium text-gray-700">Status *</label>
                 <select name="status" id="status" required
-                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    class="mt-1 block w-full rounded-md border border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm">
                     <option value="draft" {{ old('status') == 'draft' ? 'selected' : '' }}>Draft</option>
                     <option value="published" {{ old('status') == 'published' ? 'selected' : '' }}>Published</option>
                 </select>

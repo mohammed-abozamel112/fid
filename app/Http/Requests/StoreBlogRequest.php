@@ -45,6 +45,7 @@ class StoreBlogRequest extends FormRequest
                 'required',
                 Rule::in(['draft', 'published']),
             ],
+            'user_id' => 'nullable|exists:users,id',
         ];
     }
 }
