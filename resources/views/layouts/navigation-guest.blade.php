@@ -31,6 +31,14 @@
                                     'name' => app()->getLocale() === 'en' ? 'Services' : 'خدماتنا',
                                     'href' => url(app()->getLocale() . '#services'),
                                 ],
+                                [
+                                    'name' => app()->getLocale() === 'en' ? 'Blogs' : 'المدونات',
+                                    'href' => url(route('blogs.index', ['lang' => app()->getLocale()], false)),
+                                ],
+                                [
+                                    'name' => app()->getLocale() === 'en' ? 'Contact' : 'تواصل معنا',
+                                    'href' => url(route('contact.index', ['lang' => app()->getLocale()], false)),
+                                ],
                             ];
                             $activeLink = request()->url();
                         @endphp

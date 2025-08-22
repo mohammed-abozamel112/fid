@@ -5,7 +5,7 @@
         $textAlign = $isRtl ? 'text-right' : 'text-left';
         $textAlignCenter = 'text-center';
         $flexReverse = $isRtl ? 'flex-row' : 'flex-row';
-        $spaceReverse = $isRtl ? 'space-x-reverse' : '';
+        $spaceReverse = $isRtl ? 'space-x-reverse' : 'space-x-2';
         $borderLeft = $isRtl ? 'border-r-4' : 'border-l-4';
         $marginLeft = $isRtl ? 'mr-2' : 'ml-2';
         $marginRight = $isRtl ? 'ml-2' : 'mr-2';

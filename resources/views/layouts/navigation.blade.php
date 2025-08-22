@@ -6,21 +6,47 @@
     class="bg-gradient-to-br from-[#FCF7F8] via-white to-red-50 w-full fixed z-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div :class="{ 'flex-row-reverse': $isRtl, 'flex-row': !$isRtl }" class="flex justify-between h-16">
-            <div class="flex">
-                <div class="shrink-0 flex items-center">
+            <div class="flex gap-2">
+                <div class="shrink-0 flex items-center h-12 w-12 justify-center">
                     <a href="{{ route('dashboard', ['lang' => app()->getLocale()]) }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-[#A31621]" />
+                        <img src="{{ asset('storage/logo.png') }}" alt="">
                     </a>
                 </div>
 
-                <div class="hidden space-x-8 sm:-my-px {{ $isRtl ? 'sm:me-10' : 'sm:ms-10' }} sm:flex">
+                <div class="hidden gap-3 sm:-my-px {{ $isRtl ? 'sm:me-10' : 'sm:ms-10' }} sm:flex">
                     <x-nav-link :href="route('dashboard', ['lang' => app()->getLocale()])" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                     <x-nav-link :href="route('services.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('services.*')">
                         {{ __('Services') }}
                     </x-nav-link>
-                    {{-- Add more navigation links here as needed --}}
+                    <x-nav-link :href="route('blogs.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('blogs.*')">
+                        {{ __('Blogs') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('categories.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('categories.*')">
+                        {{ __('Categories') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('clients.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('clients.*')">
+                        {{ __('Clients') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('projects.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('projects.*')">
+                        {{ __('Projects') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('reviews.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('reviews.*')">
+                        {{ __('Reviews') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('images.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('images.*')">
+                        {{ __('Images') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('tags.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('tags.*')">
+                        {{ __('Tags') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('about', ['lang' => app()->getLocale()])" :active="request()->routeIs('about')">
+                        {{ __('About') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('contact.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('contact.*')">
+                        {{ __('Contact') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -113,7 +139,7 @@
         </div>
     </div>
 
-    <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
+        <div :class="{ 'block': open, 'hidden': !open }" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard', ['lang' => app()->getLocale()])" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -121,7 +147,33 @@
             <x-responsive-nav-link :href="route('services.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('services.*')">
                 {{ __('Services') }}
             </x-responsive-nav-link>
-            {{-- Add more responsive navigation links here as needed --}}
+            <x-responsive-nav-link :href="route('blogs.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('blogs.*')">
+                {{ __('Blogs') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('categories.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('categories.*')">
+                {{ __('Categories') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('clients.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('clients.*')">
+                {{ __('Clients') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('projects.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('projects.*')">
+                {{ __('Projects') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('reviews.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('reviews.*')">
+                {{ __('Reviews') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('images.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('images.*')">
+                {{ __('Images') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('tags.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('tags.*')">
+                {{ __('Tags') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('about', ['lang' => app()->getLocale()])" :active="request()->routeIs('about')">
+                {{ __('About') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('contact.index', ['lang' => app()->getLocale()])" :active="request()->routeIs('contact.*')">
+                {{ __('Contact') }}
+            </x-responsive-nav-link>
         </div>
 
         <div class="pt-4 pb-1 border-t border-gray-200">
