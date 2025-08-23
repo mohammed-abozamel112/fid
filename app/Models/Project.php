@@ -45,4 +45,9 @@ class Project extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+    // create relation with client many to one
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

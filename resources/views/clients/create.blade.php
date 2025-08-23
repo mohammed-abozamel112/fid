@@ -11,7 +11,7 @@
                 {{ $isRtl ? 'إنشاء عميل جديد' : 'Create New Client' }}
             </h1>
 
-            <form action="{{ route('clients.store') }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+            <form action="{{ route('clients.store',app()->getLocale()) }}" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
                 @csrf
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -150,7 +150,7 @@
                     <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                         {{ $isRtl ? 'إنشاء عميل' : 'Create Client' }}
                     </button>
-                    <a href="{{ route('clients.index') }}" class="text-gray-500 hover:text-gray-700">
+                    <a href="{{ route('clients.index',app()->getLocale()) }}" class="text-gray-500 hover:text-gray-700">
                         {{ $isRtl ? 'إلغاء' : 'Cancel' }}
                     </a>
                 </div>

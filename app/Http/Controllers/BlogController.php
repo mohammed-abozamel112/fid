@@ -38,26 +38,27 @@ class BlogController extends Controller
     {
         // Validate and store the blog data
         $validated = $request->validated();
-        
-        // Handle image upload
-        if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('images/blogs', 'public');
-        }
-        
+
         // Set user_id if not provided
         if (!isset($validated['user_id']) && Auth::check()) {
             $validated['user_id'] = Auth::id();
         }
-        
+
+        // Handle image upload
+        if ($request->hasFile('image')) {
+            // store image and add path to validated data so it will be saved on create
+            $validated['image'] = $request->file('image')->store('images/blogs', 'public');
+        }
+
         $blog = Blog::create($validated);
-        
+
         return redirect()->route('blogs.index', ['lang' => app()->getLocale()])->with('success', 'Blog created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show($lang,Blog $blog)
+    public function show($lang, Blog $blog)
     {
 
         return view('blogs.show', compact('blog'));
@@ -66,7 +67,7 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit($lang,Blog $blog)
+    public function edit($lang, Blog $blog)
     {
         return view('blogs.edit', compact('blog'));
     }

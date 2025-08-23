@@ -37,4 +37,9 @@ class Client extends Model
         $column = 'category_' . $locale;
         return $this->{$column} ?? $this->category_en;
     }
+
+    public function projects()
+    {
+        return $this->hasMany(Project::class);
+    }
 }

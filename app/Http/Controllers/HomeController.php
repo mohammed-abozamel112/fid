@@ -7,7 +7,6 @@ use App\Models\Image;
 use App\Models\Project;
 use App\Models\Review;
 use App\Models\Service;
-use App\Models\Tag;
 
 class HomeController extends Controller
 {

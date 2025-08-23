@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateImageRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
 {
@@ -76,6 +77,9 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
+        if ($image->image) {
+            Storage::disk('public')->delete($image->image);
+        }
         $image->delete();
         return redirect()->route('images.index', ['lang' => app()->getLocale()])->with('success', 'Image deleted successfully.');
     }

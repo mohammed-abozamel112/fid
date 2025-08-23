@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Models\Client;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -13,7 +15,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('client')->paginate(10);
         return view('projects.index', compact('projects'));
     }
 
@@ -22,8 +24,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
-
+        $clients = Client::all();
+        return view('projects.create', compact('clients'));
     }
 
     /**
@@ -31,16 +33,18 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        $project = Project::create($request->validated());
+        $validated = $request->validated();
 
         // Handle file upload if an image is provided
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-            $project->image = $path;
-            $project->save();
+            $path = $request->file('image')->store('projects', 'public');
+            $validated['image'] = $path;
         }
 
-        return redirect()->route('projects.index')->with('success', 'Project created successfully.');
+        $project = Project::create($validated);
+
+        return redirect()->route('projects.index', ['lang' => app()->getLocale()])
+            ->with('success', 'Project created successfully.');
     }
 
     /**
@@ -48,7 +52,8 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        // Eager load the client relationship
+        $project->load('client');
         return view('projects.show', compact('project'));
     }
 
@@ -57,8 +62,8 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
-        return view('projects.edit', compact('project'));
+        $clients = Client::all();
+        return view('projects.edit', compact('project', 'clients'));
     }
 
     /**
@@ -66,17 +71,23 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
-        $project->update($request->validated());
+        $validated = $request->validated();
 
         // Handle file upload if an image is provided
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-            $project->image = $path;
-            $project->save();
+            // Delete old image if it exists
+            if ($project->image) {
+                Storage::disk('public')->delete($project->image);
+            }
+
+            $path = $request->file('image')->store('projects', 'public');
+            $validated['image'] = $path;
         }
 
-        return redirect()->route('projects.index')->with('success', 'Project updated successfully.');
+        $project->update($validated);
+
+        return redirect()->route('projects.index', ['lang' => app()->getLocale()])
+            ->with('success', 'Project updated successfully.');
     }
 
     /**
@@ -84,8 +95,14 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        //
+        // Delete image if it exists
+        if ($project->image) {
+            Storage::disk('public')->delete($project->image);
+        }
+
         $project->delete();
-        return redirect()->route('projects.index')->with('success', 'Project deleted successfully.');
+
+        return redirect()->route('projects.index', ['lang' => app()->getLocale()])
+            ->with('success', 'Project deleted successfully.');
     }
 }

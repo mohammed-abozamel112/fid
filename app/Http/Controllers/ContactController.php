@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Log;
 
+
 class ContactController extends Controller
 {
     public function index()
     {
+        
         // تحديد اتجاه النص بناءً على اللغة
         $isRtl = in_array(app()->getLocale(), ['ar']);
         $textAlign = $isRtl ? 'text-right' : 'text-left';

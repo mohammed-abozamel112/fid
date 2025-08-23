@@ -2,6 +2,7 @@
     @php
         $isRtl = app()->getLocale() === 'ar';
         $textAlign = $isRtl ? 'text-right' : 'text-left';
+         $flexDirection = $isRtl ? 'flex-row-reverse' : 'flex-row';
     @endphp
 
     <div class="container mx-auto px-4 py-8">

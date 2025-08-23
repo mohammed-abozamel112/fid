@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Http\Requests\StoreClientRequest;
 use App\Http\Requests\UpdateClientRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
@@ -30,7 +31,12 @@ class ClientController extends Controller
      */
     public function store(StoreClientRequest $request)
     {
-        Client::create($request->validated());
+        $client = Client::create($request->validated());
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('clients', 'public');
+            $client->image = $path;
+            $client->save();
+        }
         return redirect()->route('clients.index', ['lang' => app()->getLocale()])->with('success', 'Client created successfully.');
     }
 
@@ -56,6 +62,13 @@ class ClientController extends Controller
     public function update(UpdateClientRequest $request, Client $client)
     {
         $client->update($request->validated());
+
+        if ($request->hasFile('image')) {
+            $path = $request->file('image')->store('clients', 'public');
+            $client->image = $path;
+            $client->save();
+        }
+
         return redirect()->route('clients.index', ['lang' => app()->getLocale()])->with('success', 'Client updated successfully.');
     }
 
@@ -64,6 +77,9 @@ class ClientController extends Controller
      */
     public function destroy(Client $client)
     {
+        if ($client->image) {
+            Storage::disk('public')->delete($client->image);
+        }
         $client->delete();
         return redirect()->route('clients.index', ['lang' => app()->getLocale()])->with('success', 'Client deleted successfully.');
     }
