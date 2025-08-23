@@ -95,11 +95,6 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
-        // Delete image if it exists
-        if ($project->image) {
-            Storage::disk('public')->delete($project->image);
-        }
-
         $project->delete();
 
         return redirect()->route('projects.index', ['lang' => app()->getLocale()])
