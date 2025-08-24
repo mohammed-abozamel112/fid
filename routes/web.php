@@ -70,6 +70,16 @@ Route::prefix('{lang}')->middleware(SetLocale::class)->group(function () {
         Route::get('/', [ContactController::class, 'index'])->name('index');
         Route::post('/', [ContactController::class, 'submit'])->name('submit');
     });
+    // projects routes
+    Route::prefix('projects')->as('projects.')->group(function () {
+        Route::get('/', [ProjectController::class, 'index'])->name('index');
+        Route::get('/create', [ProjectController::class, 'create'])->name('create');
+        Route::post('/', [ProjectController::class, 'store'])->name('store');
+        Route::get('/{project}', [ProjectController::class, 'show'])->name('show');
+        Route::get('/{project}/edit', [ProjectController::class, 'edit'])->name('edit');
+        Route::put('/{project}', [ProjectController::class, 'update'])->name('update');
+        Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('destroy');
+    });
 
     // categories routes
     Route::prefix('categories')->as('categories.')->group(function () {
@@ -93,16 +103,7 @@ Route::prefix('{lang}')->middleware(SetLocale::class)->group(function () {
         Route::delete('/{client}', [ClientController::class, 'destroy'])->name('destroy');
     });
 
-    // projects routes
-    Route::prefix('projects')->as('projects.')->group(function () {
-        Route::get('/', [ProjectController::class, 'index'])->name('index');
-        Route::get('/create', [ProjectController::class, 'create'])->name('create');
-        Route::post('/', [ProjectController::class, 'store'])->name('store');
-        Route::get('/{project}', [ProjectController::class, 'show'])->name('show');
-        Route::get('/{project}/edit', [ProjectController::class, 'edit'])->name('edit');
-        Route::put('/{project}', [ProjectController::class, 'update'])->name('update');
-        Route::delete('/{project}', [ProjectController::class, 'destroy'])->name('destroy');
-    });
+
 
     // reviews routes
     Route::prefix('reviews')->as('reviews.')->group(function () {

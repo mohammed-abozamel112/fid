@@ -60,16 +60,15 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Project $project)
+   public function edit($lang, Project $project)
     {
-        $clients = Client::all();
-        return view('projects.edit', compact('project', 'clients'));
+        return view('projects.edit', compact('project', 'lang'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProjectRequest $request, Project $project)
+    public function update(UpdateProjectRequest $request, $lang, Project $project)
     {
         $validated = $request->validated();
 
@@ -86,18 +85,16 @@ class ProjectController extends Controller
 
         $project->update($validated);
 
-        return redirect()->route('projects.index', ['lang' => app()->getLocale()])
+        return redirect()->route('projects.index', ['lang' => $lang])
             ->with('success', 'Project updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Project $project)
+    public function destroy($lang, Project $project)
     {
         $project->delete();
-
-        return redirect()->route('projects.index', ['lang' => app()->getLocale()])
-            ->with('success', 'Project deleted successfully.');
+        return redirect()->route('projects.index', ['lang' => $lang])->with('success', 'Project deleted successfully.');
     }
 }
