@@ -11,14 +11,6 @@
         {{-- Background Gradient --}}
         <div class="absolute inset-0 bg-gradient-to-br from-[#FCF7F8] via-white to-red-50"></div>
 
-        {{-- Animated Background Elements --}}
-        {{--       <div class="absolute inset-0 overflow-hidden">
-        <div class="absolute -top-4 -right-4 w-72 h-72 bg-[#A31621]/10 rounded-full blur-3xl animate-pulse"></div>
-        <div class="absolute -bottom-8 -left-8 w-96 h-96 bg-red-300/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        <div class="absolute top-1/3 left-1/4 w-2 h-2 bg-[#A31621] rounded-full animate-bounce delay-300"></div>
-        <div class="absolute top-2/3 right-1/4 w-3 h-3 bg-red-400 rounded-full animate-bounce delay-700"></div>
-      </div> --}}
-
         <div class="relative z-10 container mx-auto px-4 pt-32 pb-16">
             <div class="max-w-6xl mx-auto">
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center min-h-[70vh]">

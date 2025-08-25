@@ -77,10 +77,14 @@
                 <label for="type" class="block text-gray-700 font-bold mb-2">Image Type:</label>
                 <select name="type" id="type" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
                     <option value="">Select Type</option>
+                    <option value="blog" {{ old('type') == 'blog' ? 'selected' : '' }}>Blog</option>
+                    <option value="service" {{ old('type') == 'service' ? 'selected' : '' }}>Service</option>
                     <option value="gallery" {{ old('type') == 'gallery' ? 'selected' : '' }}>Gallery</option>
-                    <option value="banner" {{ old('type') == 'banner' ? 'selected' : '' }}>Banner</option>
-                    <option value="logo" {{ old('type') == 'logo' ? 'selected' : '' }}>Logo</option>
-                    <option value="other" {{ old('type') == 'other' ? 'selected' : '' }}>Other</option>
+                    <option value="profile" {{ old('type') == 'profile' ? 'selected' : '' }}>Profile</option>
+                    <option value="client" {{ old('type') == 'client' ? 'selected' : '' }}>Client</option>
+                    <option value="works" {{ old('type') == 'works' ? 'selected' : '' }}>Works</option>
+                    <option value="home" {{ old('type') == 'home' ? 'selected' : '' }}>Home</option>
+                    <option value="about" {{ old('type') == 'about' ? 'selected' : '' }}>About</option>
                 </select>
                 @error('type')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
