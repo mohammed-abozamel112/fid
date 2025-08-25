@@ -4,7 +4,7 @@
     @endphp
     {{-- hero section --}}
     @php
-        $img = $gallery->first();
+        $img = $homeImages->first();
 
     @endphp
     <section id="hero" class="w-full h-auto min-h-screen relative overflow-hidden">
@@ -20,38 +20,41 @@
                         <div
                             class="inline-flex items-center px-4 py-2 rounded-full bg-[#A31621]/10 text-[#A31621] text-sm font-medium">
                             <span class="w-2 h-2 bg-[#A31621] rounded-full mr-2 animate-pulse"></span>
-                            Digital Agency Excellence
+
+                            {{ $img->name }}
                         </div>
 
                         {{-- Main Heading --}}
                         <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                            <span class="text-gray-900 block">Empowering Brands</span>
-                            <span class="text-gray-900 block">through</span>
+                            <span class="text-gray-900 block">{{ $img->name }}</span>
+
                             <span
-                                class="bg-gradient-to-r from-[#A31621] to-red-600 bg-clip-text text-transparent block">
-                                Code & Creativity
+                                class="bg-gradient-to-r from-[#A31621] to-red-600 bg-clip-text text-transparent block leading-normal">
+                                {{ $isRtl ? 'كود وابداع' : 'Code & Creativity' }}
                             </span>
                         </h1>
 
                         {{-- Subtitle --}}
                         <p class="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">
-                            We're a modern digital agency combining creative marketing,
-                            brand storytelling, and advanced programming to transform your digital presence.
+                            {{ $img->caption }}
                         </p>
 
                         {{-- Statistics --}}
                         <div class="grid grid-cols-3 gap-6 py-6 border-t border-gray-200 dark:border-slate-700">
                             <div>
                                 <div class="text-2xl font-bold text-[#A31621]">150+</div>
-                                <div class="text-sm text-gray-600 dark:text-gray-400">Projects</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">
+                                    {{ $isRtl ? 'مشاريع' : 'Projects' }}</div>
                             </div>
                             <div>
                                 <div class="text-2xl font-bold text-[#A31621]">98%</div>
-                                <div class="text-sm text-gray-600 dark:text-gray-400">Satisfaction</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">
+                                    {{ $isRtl ? 'رضا العملاء' : 'Satisfaction' }}</div>
                             </div>
                             <div>
                                 <div class="text-2xl font-bold text-[#A31621]">8+</div>
-                                <div class="text-sm text-gray-600 dark:text-gray-400">Years</div>
+                                <div class="text-sm text-gray-600 dark:text-gray-400">{{ $isRtl ? 'سنوات' : 'Years' }}
+                                </div>
                             </div>
                         </div>
 
@@ -59,13 +62,13 @@
                         <div class="flex flex-col sm:flex-row gap-4">
                             <a href="#portfolio"
                                 class="bg-[#A31621] hover:bg-red-700 text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-xl hover:-translate-y-1 group">
-                                View Our Work
+                                {{ $isRtl ? 'عرض أعمالنا' : 'View Our Work' }}
                                 <span class="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform">&#8594;</span>
                             </a>
                             <a href="#about"
                                 class="border-[#A31621] text-[#A31621] hover:bg-[#A31621] hover:text-white px-8 py-3 rounded-full text-lg font-medium transition-all duration-200 hover:shadow-lg group">
                                 <span class="mr-2 h-5 w-5">&#9654;</span>
-                                Learn More
+                                {{ $isRtl ? 'تعلم المزيد' : 'Learn More' }}
                             </a>
                         </div>
 
@@ -95,7 +98,7 @@
                                         <div class="w-3 h-3 bg-green-500 rounded-full"></div>
                                     </div>
                                     <div class="text-sm text-gray-400">
-                                        {{ app()->getLocale() === 'en' ? 'Fid Company' : 'شركة فيد للنسويق' }}</div>
+                                        {{ $img->name }}</div>
                                 </div>
 
                                 {{-- Content --}}
@@ -118,7 +121,7 @@
                                         <div class="bg-red-300 w-6 h-8 rounded-sm"></div>
                                     </div> --}}
                                     <img loading="lazy" class="w-full max-h-48 object-cover"
-                                        src="{{ asset('storage/' . 'main.png') ?? $img->image }}" alt="">
+                                        src="{{ asset('storage/' . $img->image) }}" alt="">
                                 </div>
                             </div>
                         </div>
