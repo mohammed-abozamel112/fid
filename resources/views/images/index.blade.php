@@ -1,5 +1,8 @@
 <x-master-layout>
-
+@php
+    $isRtl=app()->getLocale() === 'ar';
+  
+@endphp
     <div class="container mx-auto px-4">
         <h1 class="text-2xl font-bold mb-4">Images</h1>
 
@@ -21,7 +24,8 @@
                 @foreach ($images as $image)
                     <div class="bg-white rounded-lg shadow-md overflow-hidden">
                         <div class="h-48 overflow-hidden">
-                            <img src="{{ asset('storage/' . $image->path_url) }}" alt="{{ $image->alt_text }}" class="w-full h-full object-cover">
+                            {{-- if it is like this main.png use $imageSrc if has full link use $imageLink --}}
+                            <img src="{{ asset('storage/'.$image->image) }}" alt="{{ $image->alt_text }}" class="w-full h-full object-cover">
                         </div>
                         <div class="p-4">
                             <h3 class="font-semibold text-lg mb-2">{{ $image->name }}</h3>
@@ -29,11 +33,11 @@
                             <p class="text-gray-500 text-xs mb-3">{{ $image->type }}</p>
 
                             <div class="flex space-x-2">
-                                <a href="{{ route('images.show', ['lang' => app()->getLocale(), 'image' => $image->id]) }}"
+                                <a href="{{ route('images.show', ['lang' => app()->getLocale(), 'image' => $image]) }}"
                                     class="text-blue-600 hover:underline text-sm">View</a>
-                                <a href="{{ route('images.edit', ['lang' => app()->getLocale(), 'image' => $image->id]) }}"
+                                <a href="{{ route('images.edit', ['lang' => app()->getLocale(), 'image' => $image]) }}"
                                     class="text-yellow-600 hover:underline text-sm">Edit</a>
-                                <form action="{{ route('images.destroy', ['lang' => app()->getLocale(), 'image' => $image->id]) }}"
+                                <form action="{{ route('images.destroy', ['lang' => app()->getLocale(), 'image' => $image]) }}"
                                     method="POST" class="inline-block"
                                     onsubmit="return confirm('Are you sure you want to delete this image?');">
                                     @csrf

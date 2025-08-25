@@ -14,7 +14,7 @@ class ReviewController extends Controller
     public function index()
     {
         //
-        $reviews = Review::all();
+        $reviews = Review::paginate(10);
         return view('reviews.index', compact('reviews'));
     }
 
@@ -30,7 +30,7 @@ class ReviewController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreReviewRequest $request)
+    public function store(StoreReviewRequest $request, $lang)
     {
         //
         $review = Review::create($request->validated());
@@ -41,31 +41,30 @@ class ReviewController extends Controller
             $review->save();
         }
         // Redirect with success message
-        return redirect()->route('reviews.index')->with('success', 'Review created successfully.');
+        return redirect()->route('reviews.index', ['lang' => app()->getLocale()])->with('success', 'Review created successfully.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Review $review)
+    public function show($lang, Review $review)
     {
         //
-        return view('reviews.show', compact('review'));
+        return view('reviews.show', ['lang' => $lang], compact('review'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Review $review)
+    public function edit($lang, Review $review)
     {
-        //
-        return view('reviews.edit', compact('review'));
+        return view('reviews.edit', compact('review', 'lang'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateReviewRequest $request, Review $review)
+    public function update(UpdateReviewRequest $request, $lang, Review $review)
     {
         //
         $review->update($request->validated());
@@ -76,16 +75,16 @@ class ReviewController extends Controller
             $review->save();
         }
         // Redirect with success message
-        return redirect()->route('reviews.index')->with('success', 'Review updated successfully.');
+        return redirect()->route('reviews.index', ['lang' => $lang])->with('success', 'Review updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Review $review)
+    public function destroy($lang, Review $review)
     {
         //
         $review->delete();
-        return redirect()->route('reviews.index')->with('success', 'Review deleted successfully.');
+        return redirect()->route('reviews.index', ['lang' => $lang])->with('success', 'Review deleted successfully.');
     }
 }

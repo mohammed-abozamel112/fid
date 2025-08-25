@@ -13,7 +13,7 @@
             <div class="flex flex-col md:flex-row gap-6">
                 <div class="md:w-1/2">
                     <div class="bg-gray-100 rounded-lg p-4 mb-4">
-                        <img src="{{ asset('storage/' . $image->path_url) }}" alt="{{ $image->alt_text }}" class="w-full h-auto rounded-lg">
+                        <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $image->alt_text }}" class="w-full h-auto rounded-lg">
                     </div>
                 </div>
 
@@ -22,18 +22,13 @@
 
                     <div class="grid grid-cols-1 gap-4 mb-4">
                         <div>
-                            <h3 class="font-semibold text-gray-700 mb-2">English:</h3>
-                            <p><strong>Name:</strong> {{ $image->name_en }}</p>
-                            <p><strong>Alt Text:</strong> {{ $image->alt_text_en }}</p>
-                            <p><strong>Caption:</strong> {{ $image->caption_en }}</p>
+                           
+                            <p><strong>Name:</strong> {{ $image->name }}</p>
+                            <p><strong>Alt Text:</strong> {{ $image->alt_text }}</p>
+                            <p><strong>Caption:</strong> {{ $image->caption }}</p>
                         </div>
 
-                        <div>
-                            <h3 class="font-semibold text-gray-700 mb-2">Arabic:</h3>
-                            <p><strong>Name:</strong> {{ $image->name_ar }}</p>
-                            <p><strong>Alt Text:</strong> {{ $image->alt_text_ar }}</p>
-                            <p><strong>Caption:</strong> {{ $image->caption_ar }}</p>
-                        </div>
+                      
                     </div>
 
                     <div class="mb-4">

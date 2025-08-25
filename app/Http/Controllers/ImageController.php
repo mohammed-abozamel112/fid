@@ -21,15 +21,15 @@ class ImageController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($lang)
     {
-        return view('images.create');
+        return view('images.create', compact('lang'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreImageRequest $request)
+    public function store(StoreImageRequest $request, $lang)
     {
         Image::create($request->validated());
         // Optionally handle file upload if needed
@@ -44,43 +44,55 @@ class ImageController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Image $image)
+    public function show($lang, Image $image)
     {
-        return view('images.show', compact('image'));
+        //
+        return view('images.show', ['lang' => $lang], compact('image'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Image $image)
+    public function edit($lang, Image $image)
     {
-        return view('images.edit', compact('image'));
+        return view('images.edit', compact('image', 'lang'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateImageRequest $request, Image $image)
+    public function update(UpdateImageRequest $request, $lang, Image $image)
     {
-        $image->update($request->validated());
+        $data = $request->validated();
 
-        // Optionally handle file upload if needed
+        // Handle file upload before updating
         if ($request->hasFile('image')) {
-            $path = $request->file('image')->store('images', 'public');
-            $image->update(['image' => $path]);
+            // Delete the old image file if it exists
+            if ($image->image && Storage::disk('public')->exists($image->image)) {
+                Storage::disk('public')->delete($image->image);
+            }
+
+            // Store the new image and update the path in data array
+            $data['image'] = $request->file('image')->store('images', 'public');
         }
-        return redirect()->route('images.index', ['lang' => app()->getLocale()])->with('success', 'Image updated successfully.');
+
+        // Now update with final data
+        $image->update($data);
+
+        return redirect()->route('images.index', ['lang' => $lang])
+            ->with('success', 'Image updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Image $image)
+    public function destroy($lang, Image $image)
     {
+        //delete image file from storage
         if ($image->image) {
             Storage::disk('public')->delete($image->image);
         }
         $image->delete();
-        return redirect()->route('images.index', ['lang' => app()->getLocale()])->with('success', 'Image deleted successfully.');
+        return redirect()->route('images.index', ['lang' => $lang])->with('success', 'Image deleted successfully.');
     }
 }

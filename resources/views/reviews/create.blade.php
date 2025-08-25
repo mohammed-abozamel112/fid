@@ -7,28 +7,46 @@
             @csrf
 
             <div class="mb-4">
-                <label for="name" class="block text-gray-700 font-bold mb-2">Name:</label>
-                <input type="text" name="name" id="name" value="{{ old('name') }}"
+                <label for="name_ar" class="block text-gray-700 font-bold mb-2">Name (Arabic):</label>
+                <input type="text" name="name_ar" id="name_ar" value="{{ old('name_ar') }}"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                @error('name')
+                @error('name_ar')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-4">
-                <label for="position" class="block text-gray-700 font-bold mb-2">Position:</label>
-                <input type="text" name="position" id="position" value="{{ old('position') }}"
+                <label for="name_en" class="block text-gray-700 font-bold mb-2">Name (English):</label>
+                <input type="text" name="name_en" id="name_en" value="{{ old('name_en') }}"
                     class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>
-                @error('position')
+                @error('name_en')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>
 
             <div class="mb-4">
-                <label for="content" class="block text-gray-700 font-bold mb-2">Review Content:</label>
-                <textarea name="content" id="content" rows="4"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>{{ old('content') }}</textarea>
-                @error('content')
+                <label for="review_ar" class="block text-gray-700 font-bold mb-2">Review Content (Arabic):</label>
+                <textarea name="review_ar" id="review_ar" rows="4"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>{{ old('review_ar') }}</textarea>
+                @error('review_ar')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4">
+                <label for="review_en" class="block text-gray-700 font-bold mb-2">Review Content (English):</label>
+                <textarea name="review_en" id="review_en" rows="4"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" required>{{ old('review_en') }}</textarea>
+                @error('review_en')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="block text-gray-700 font-bold mb-2">Email:</label>
+                <input type="email" name="email" id="email" value="{{ old('email') }}"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                @error('email')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
             </div>

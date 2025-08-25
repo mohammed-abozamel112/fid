@@ -13,6 +13,7 @@ class Image extends Model
         'name_ar',
         'name_en',
         'path_url',
+        'image',
         'alt_text_ar',
         'alt_text_en',
         'caption_ar',

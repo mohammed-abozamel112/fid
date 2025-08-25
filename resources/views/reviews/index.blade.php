@@ -20,9 +20,10 @@
             <table class="min-w-full bg-white border border-gray-200 text-center">
                 <thead>
                     <tr>
-                        <th class="py-2 px-4 border-b">Name</th>
-                        <th class="py-2 px-4 border-b">Position</th>
+                        <th class="py-2 px-4 border-b">Name (English)</th>
+                        <th class="py-2 px-4 border-b">Name (Arabic)</th>
                         <th class="py-2 px-4 border-b">Rating</th>
+                        <th class="py-2 px-4 border-b">Email</th>
                         <th class="py-2 px-4 border-b">Image</th>
                         <th class="py-2 px-4 border-b">Created At</th>
                         <th class="py-2 px-4 border-b">Actions</th>
@@ -32,26 +33,27 @@
                     @foreach ($reviews as $review)
                         <tr>
                             <td class="py-2 px-4 border-b">
-                                <a href="{{ route('reviews.show', ['lang' => app()->getLocale(), 'review' => $review->id]) }}"
+                                <a href="{{ route('reviews.show', ['lang' => app()->getLocale(), 'review' => $review]) }}"
                                     class="text-blue-600 hover:underline">
-                                    {{ $review->name }}
+                                    {{ $review->name_en }}
                                 </a>
                             </td>
-                            <td class="py-2 px-4 border-b">{{ $review->position }}</td>
+                            <td class="py-2 px-4 border-b text-right" dir="rtl">{{ $review->name_ar }}</td>
                             <td class="py-2 px-4 border-b">{{ $review->rating }}/5</td>
+                            <td class="py-2 px-4 border-b">{{ $review->email ?? 'N/A' }}</td>
                             <td class="py-2 px-4 border-b">
                                 @if($review->image)
-                                    <img src="{{ asset('storage/' . $review->image) }}" width="100px" alt="{{ $review->name }}">
+                                    <img src="{{ asset('storage/' . $review->image) }}" width="100px" alt="{{ $review->name_en }}">
                                 @else
                                     No image
                                 @endif
                             </td>
                             <td class="py-2 px-4 border-b">{{ $review->created_at }}</td>
                             <td class="py-2 px-4 border-b">
-                                <a href="{{ route('reviews.edit', ['lang' => app()->getLocale(), 'review' => $review->id]) }}"
+                                <a href="{{ route('reviews.edit', ['lang' => app()->getLocale(), 'review' => $review]) }}"
                                     class="text-yellow-500 hover:underline mr-2">Edit</a>
                                 <form
-                                    action="{{ route('reviews.destroy', ['lang' => app()->getLocale(), 'review' => $review->id]) }}"
+                                    action="{{ route('reviews.destroy', ['lang' => app()->getLocale(), 'review' => $review]) }}"
                                     method="POST" class="inline-block"
                                     onsubmit="return confirm('Are you sure you want to delete this review?');">
                                     @csrf

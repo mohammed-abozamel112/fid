@@ -18,8 +18,8 @@
                 @endif
 
                 <div class="md:w-2/3">
-                    <h2 class="text-xl font-semibold mb-2">{{ $review->name }}</h2>
-                    <p class="text-gray-600 mb-2">{{ $review->position }}</p>
+                    <h2 class="text-xl font-semibold mb-2">{{ $review->name_en }}</h2>
+                    <h3 class="text-lg font-medium mb-2 text-right" dir="rtl">{{ $review->name_ar }}</h3>
 
                     <div class="flex items-center mb-4">
                         <span class="text-yellow-500 text-lg mr-2">
@@ -34,7 +34,22 @@
                         <span class="text-gray-600">({{ $review->rating }}/5)</span>
                     </div>
 
-                    <p class="text-gray-700 mb-4">{{ $review->content }}</p>
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-1">Review (English):</h4>
+                        <p class="text-gray-700">{{ $review->review_en }}</p>
+                    </div>
+
+                    <div class="mb-4">
+                        <h4 class="font-semibold mb-1 text-right" dir="rtl">التقييم (العربية):</h4>
+                        <p class="text-gray-700 text-right" dir="rtl">{{ $review->review_ar }}</p>
+                    </div>
+
+                    @if($review->email)
+                        <div class="mb-4">
+                            <h4 class="font-semibold mb-1">Email:</h4>
+                            <p class="text-gray-700">{{ $review->email }}</p>
+                        </div>
+                    @endif
 
                     <div class="text-sm text-gray-500">
                         <p>Created: {{ $review->created_at->format('M d, Y') }}</p>
