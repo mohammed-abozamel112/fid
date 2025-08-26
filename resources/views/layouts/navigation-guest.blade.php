@@ -4,7 +4,7 @@
 <header class="fixed flex justify-center top-0 w-full text-sm not-has-[nav]:hidden z-50 transition-all duration-1000">
     @if (Route::has('login'))
         <nav
-            class="relative min-w-[80%] top-0 z-50 w-full bg-transparent text-[#A31621] shadow-md transition-all duration-1000">
+            class="relative min-w-[80%] p-2 top-0 z-50 w-full glasseff text-[#A31621] shadow-md transition-all duration-1000">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex h-16 items-center justify-between p-4">
                     <!-- Logo -->
@@ -121,7 +121,7 @@
                     </a>
                 @endforeach
                 <!-- From Uiverse.io by Itskrish01 -->
-                <div class="w-full flex justify-center gap-4 m-4">
+                <div class="w-full flex justify-center gap-4 m-4 pt-4">
                     <button
                         class="relative inline-flex h-12 active:scale-95 transistion overflow-hidden rounded-lg p-[1px] focus:outline-none">
                         <span

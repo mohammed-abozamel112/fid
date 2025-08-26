@@ -16,13 +16,13 @@ window.addEventListener("scroll", function () {
 
         nav.classList.remove("w-full");
 
-        nav.classList.remove("bg-transparent");
+        nav.classList.remove("glasseff");
     } else {
         nav.classList.remove("glasseff-scroll");
         nav.classList.remove("w-[80%]");
 
         nav.classList.add("w-full");
-        nav.classList.add("bg-transparent");
+        nav.classList.add("glasseff");
     }
 });
 
@@ -75,8 +75,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     loadingSpinner.classList.add("hidden");
                     tagsContainer.classList.remove("opacity-50");
 
+                    // Re-initialize animations for the new content
+                    initAnimations();
+
                     // Smooth scroll to top
-                    window.scrollTo({ top: 0, behavior: "smooth" });
+                    window.scrollTo({
+                        top: window.innerHeight * 0.9,
+                        behavior: "smooth",
+                    });
                 })
                 .catch((error) => {
                     console.error("Error:", error);
@@ -86,6 +92,50 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+// Scroll animation initialization
+function initAnimations() {
+    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Element is entering the viewport (scrolling down)
+                entry.target.classList.add('is-visible');
+            } else {
+                // Element is leaving the viewport (scrolling up)
+                entry.target.classList.remove('is-visible');
+            }
+        });
+    }, {
+        threshold: 0.2,
+        rootMargin: '0px 0px -50px 0px' // Add some margin to trigger animations earlier
+    });
+
+    animatedElements.forEach(element => {
+        // Check if the element is already in the viewport on page load
+        const rect = element.getBoundingClientRect();
+        const isInViewport = (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+
+        if (isInViewport) {
+            // If it's already visible, animate it immediately
+            element.classList.add('is-visible');
+        }
+
+        // Always observe the element for both scroll directions
+        observer.observe(element);
+    });
+}
+
+// Initialize animations on page load
+document.addEventListener("DOMContentLoaded", function() {
+    initAnimations();
+});
+
 const stack = document.querySelector("#about .stack");
 const cards = Array.from(stack.children)
     .reverse()
@@ -118,3 +168,7 @@ stack.addEventListener("click", function (e) {
         }, 1200);
     }
 });
+
+/* service filtering */
+
+/* service filtering */

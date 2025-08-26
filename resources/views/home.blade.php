@@ -498,9 +498,9 @@
     <section id="reviews" class="py-20 w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[#A31621] {{ $isRtl ? 'font-arabic' : '' }}">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-[#A31621]">
                     {{ $isRtl ? 'ماذا يقول عملاؤنا' : 'What Our' }}
-                    <span class="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                    <span class="bg-gradient-to-r from-[#A31621] to-[#a3162242] bg-clip-text text-transparent">
                         {{ $isRtl ? 'العملاء' : 'Clients' }}
                     </span>
                     {{ $isRtl ? 'عنا' : 'Say' }}
@@ -515,8 +515,8 @@
             <div class="grid md:grid-cols-2 gap-8">
                 @foreach ($latestReviews as $review)
                     <div
-                        class="relative p-8 rounded-2xl glasseff hover:shadow-xl transition-all duration-300 hover:scale-105 {{ $isRtl ? 'text-right' : 'text-left' }}">
-                        <div class="absolute top-4 {{ $isRtl ? 'right-4' : 'left-4' }} text-blue-600 opacity-20">
+                        class="relative p-8 rounded-2xl bg-[#a3162223] hover:shadow-xl transition-all duration-300 hover:scale-105 {{ $isRtl ? 'text-right' : 'text-left' }}">
+                        <div class="absolute top-4 {{ $isRtl ? 'right-4' : 'left-4' }} text-[#A31621] opacity-20">
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-12 h-12" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path
@@ -555,7 +555,7 @@
                 @endphp
                 <div class="mt-12 text-center">
                     <div
-                        class="inline-flex items-center px-6 py-3 rounded-full bg-gray-100 border border-gray-200 {{ $isRtl ? 'flex-row-reverse' : '' }}">
+                        class="inline-flex items-center px-6 py-3 rounded-full bg-[#a3162223] border border-gray-200 {{ $isRtl ? 'flex-row-reverse' : '' }}">
                         <div class="flex {{ $isRtl ? 'mr-3' : 'ml-3' }} text-yellow-400">
                             @for ($i = 1; $i <= 5; $i++)
                                 @if ($i <= floor($averageRating))

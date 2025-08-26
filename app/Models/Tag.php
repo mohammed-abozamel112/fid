@@ -15,6 +15,7 @@ class Tag extends Model
         'description_ar',
         'description_en',
         'url',
+        'service_id',
         'blog_id',
     ];
         // Dynamic accessor for name attribute based on locale

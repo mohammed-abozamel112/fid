@@ -50,11 +50,12 @@ body {
 }
 
 .glasseff {
-    background: rgba(255, 255, 255, 0.623);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.164);
+    background: rgba(255, 255, 255, 0.384);
+    box-shadow: 0 4px 30px rgba(145, 71, 71, 0.342);
     backdrop-filter: blur(10.8px);
     -webkit-backdrop-filter: blur(10.8px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.178);
+    border-bottom: 1px solid #a31621;
+    animation: shrink 0.5s ease-out forwards;
 }
 .glasseff-scroll {
     background: rgba(190, 153, 153, 0.493);
@@ -72,6 +73,15 @@ body {
     }
     100% {
         width: 80%;
+    }
+}
+/* transtion when change from w-full to w-[80%] */
+@keyframes shrink {
+    0% {
+        width: 80%;
+    }
+    100% {
+        width: 100%;
     }
 }
 
@@ -195,8 +205,8 @@ body {
     width: 40rem;
     height: 40rem;
     border-radius: 50%;
-    border-top: #A31621 0.2rem solid;
-    border-bottom: #A31621 0.2rem solid;
+    border-top: #a31621 0.2rem solid;
+    border-bottom: #a31621 0.2rem solid;
     padding: 1rem;
     object-fit: cover;
     display: block;
@@ -245,7 +255,7 @@ body {
 
 /* Text Gradient */
 .content-1 {
-    --_text-gradient: linear-gradient(227deg, #A31621 0%, #A31621 100%);
+    --_text-gradient: linear-gradient(227deg, #a31621 0%, #a31621 100%);
 }
 .content-2 {
     --_text-gradient: linear-gradient(227deg, #28dc28 0%, #00bbff 100%);
@@ -535,4 +545,80 @@ body {
 /* services page  */
 /* odd child only */
 
+/* services page  */
+/* Base state (hidden/off-screen) */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Increased duration for smoother effect */
+}
+
+/* Animated state (visible) */
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Specific animations */
+.animate-from-left {
+    transform: translateX(-50px);
+    transition: transform 0.8s ease-out; /* Increased duration for smoother effect */
+}
+
+.animate-from-right {
+    transform: translateX(50px);
+    transition: transform 0.8s ease-out; /* Increased duration for smoother effect */
+}
+
+.animate-from-left.is-visible,
+.animate-from-right.is-visible {
+    transform: translateX(0);
+}
+
+/* Staggered animations for better visual hierarchy */
+.animate-on-scroll:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.animate-on-scroll:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.animate-on-scroll:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.animate-on-scroll:nth-child(4) {
+    transition-delay: 0.4s;
+}
+
+.animate-on-scroll:nth-child(5) {
+    transition-delay: 0.5s;
+}
+
+/* Specific element animations */
+.animate-on-scroll h2 {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 0.1s;
+}
+
+.animate-on-scroll p {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 0.2s;
+}
+
+.animate-on-scroll a {
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    transition-delay: 0.3s;
+}
+
+/* Scale animation for images */
+.animate-on-scroll img {
+    transform: scale(0.95);
+    transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+}
+
+.animate-on-scroll.is-visible img {
+    transform: scale(1);
+}
 /* services page  */
