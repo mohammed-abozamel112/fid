@@ -1,11 +1,12 @@
 @php
     $isRtl = app()->getLocale() === 'ar';
 @endphp
-<header class="w-full fixed top-0 lg:max-w-4xl max-w-[335px] text-sm not-has-[nav]:hidden z-50">
+<header class="fixed flex justify-center top-0 w-full text-sm not-has-[nav]:hidden z-50 transition-all duration-1000">
     @if (Route::has('login'))
-        <nav class="fixed top-0 z-50 w-full bg-transparent text-[#A31621] shadow-md">
+        <nav
+            class="relative min-w-[80%] top-0 z-50 w-full bg-transparent text-[#A31621] shadow-md transition-all duration-1000">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex h-16 items-center justify-between">
+                <div class="flex h-16 items-center justify-between p-4">
                     <!-- Logo -->
                     <div class="flex items-center">
                         <div class="flex flex-shrink-0 items-center space-x-2">
@@ -45,7 +46,7 @@
                         @foreach ($navLinks as $link)
                             <a href="{{ $link['href'] }}"
                                 class="min-w-max cursor-pointer px-3 py-2 text-sm font-medium nav-scroll-trigger
-                                    {{ $activeLink === $link['href'] ? 'border-b-2 border-blue-500 text-[#A31621]' : 'text-[#A31621] hover:border-b-2 hover:border-blue-500' }}">
+                                    {{ $activeLink === $link['href'] ? 'border-b-2 border-[#A31621] text-[#A31621]' : 'text-[#A31621] hover:border-b-2 hover:border-[#A31621]' }}">
                                 {{ $link['name'] }}
                             </a>
                         @endforeach
@@ -83,20 +84,16 @@
                         <div class="flex items-center w-full {{ $isRtl ? 'sm:me-6' : 'sm:ms-6' }}">
                             <a href="{{ $url }}"
                                 class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md
-              text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+              text-[#A31621] bg-[white] hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
                                 {{ app()->getLocale() === 'en' ? 'العربية' : 'English' }}
                             </a>
                         </div>
-
-
-
-
                     </div>
 
                     <!-- Mobile menu button -->
                     <div class="flex items-center md:hidden">
                         <button id="mobile-menu-button" type="button"
-                            class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-blue-500 focus:outline-none focus:ring-inset"
+                            class="inline-flex items-center justify-center rounded-md p-2 text-[#A31621] hover:[#A31621] hover:text-white focus:ring-2 focus:ring-[#A31621] focus:outline-none focus:ring-inset"
                             aria-controls="mobile-menu" aria-expanded="false">
                             <span class="sr-only">Open main menu</span>
                             <svg id="menu-open-icon" class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg"
@@ -115,7 +112,7 @@
             </div>
 
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="hidden space-y-1 bg-[#c4c4cf80] px-2 pt-2 pb-3 md:hidden">
+            <div id="mobile-menu" class="hidden space-y-1 p-8 md:hidden">
                 @foreach ($navLinks as $link)
                     <a href="{{ $link['href'] }}"
                         class="block cursor-pointer rounded-md px-3 py-2 text-center text-base font-medium
@@ -124,53 +121,54 @@
                     </a>
                 @endforeach
                 <!-- From Uiverse.io by Itskrish01 -->
-                <button
-                    class="relative inline-flex h-12 active:scale-95 transistion overflow-hidden rounded-lg p-[1px] focus:outline-none">
-                    <span
-                        class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#e7029a_0%,#f472b6_50%,#bd5fff_100%)]">
-                    </span>
-                    <span
-                        class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-bg-[#A31621] px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2 undefined">
-                        Contact me
-                        <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
-                            height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M429.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144c-14.2 5.8-22.2 20.8-19.3 35.8s16.1 25.8 31.4 25.8H224V432c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z">
-                            </path>
-                        </svg>
-                    </span>
-                </button>
-                {{-- q8=P&[Czu --}}
+                <div class="w-full flex justify-center gap-4 m-4">
+                    <button
+                        class="relative inline-flex h-12 active:scale-95 transistion overflow-hidden rounded-lg p-[1px] focus:outline-none">
+                        <span
+                            class="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#A31621_0%,#f472b6_50%,#A31621_100%)]">
+                        </span>
+                        <span
+                            class="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-lg bg-bg-[#A31621] px-7 text-sm font-medium text-white backdrop-blur-3xl gap-2 undefined">
+                            Contact me
+                            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 448 512"
+                                height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M429.6 92.1c4.9-11.9 2.1-25.6-7-34.7s-22.8-11.9-34.7-7l-352 144c-14.2 5.8-22.2 20.8-19.3 35.8s16.1 25.8 31.4 25.8H224V432c0 15.3 10.8 28.4 25.8 31.4s30-5.1 35.8-19.3l144-352z">
+                                </path>
+                            </svg>
+                        </span>
+                    </button>
+                    {{-- q8=P&[Czu --}}
 
-                @php
-                    // Define languages
-                    $locales = ['en' => 'English', 'ar' => 'العربية'];
-                    $currentLocale = app()->getLocale();
-                    $nextLocale = $currentLocale === 'en' ? 'ar' : 'en';
+                    @php
+                        // Define languages
+                        $locales = ['en' => 'English', 'ar' => 'العربية'];
+                        $currentLocale = app()->getLocale();
+                        $nextLocale = $currentLocale === 'en' ? 'ar' : 'en';
 
-                    // Get current route info
-                    $currentRoute = request()->route();
-                    $currentRouteName = $currentRoute->getName();
-                    $currentRouteParameters = $currentRoute->parameters();
+                        // Get current route info
+                        $currentRoute = request()->route();
+                        $currentRouteName = $currentRoute->getName();
+                        $currentRouteParameters = $currentRoute->parameters();
 
-                    // Merge parameters with new lang
-                    $params = array_merge($currentRouteParameters, ['lang' => $nextLocale]);
+                        // Merge parameters with new lang
+                        $params = array_merge($currentRouteParameters, ['lang' => $nextLocale]);
 
-                    try {
-                        $url = route($currentRouteName, $params);
-                    } catch (\Exception $e) {
-                        $url = url('/' . $nextLocale);
-                    }
-                @endphp
+                        try {
+                            $url = route($currentRouteName, $params);
+                        } catch (\Exception $e) {
+                            $url = url('/' . $nextLocale);
+                        }
+                    @endphp
 
-                <div class="flex items-center w-full">
-                    <a href="{{ $url }}"
-                        class="w-full inline-flex justify-center items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md
+                    <div class="flex items-center h-12 px-4">
+                        <a href="{{ $url }}"
+                            class="w-full h-full inline-flex justify-center items-center px-4 py-2 border border-transparent text-sm leading-4 font-medium rounded-md
               text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
-                        {{ app()->getLocale() === 'en' ? 'العربية' : 'English' }}
-                    </a>
+                            {{ app()->getLocale() === 'en' ? 'العربية' : 'English' }}
+                        </a>
+                    </div>
                 </div>
-
 
 
             </div>
