@@ -1,5 +1,6 @@
 <x-master-layout>
-    <x-slot name="header">
+    @auth
+        <x-slot name="header">
         <div class="flex items-center justify-between">
             <h1 class="text-3xl font-bold text-gray-900">{{ $tag->name }}</h1>
             <div class="flex space-x-2">
@@ -122,4 +123,15 @@
             </div>
         @endif
     </div>
+    @endauth
+    @guest
+        {{-- get the current service and its tags service h-screen w-full and content in the right middle
+        --}}
+        <div class="flex h-screen w-full">
+            <div class="m-auto">
+                <h1 class="text-2xl font-bold mb-4">{{ $tag->name }}</h1>
+                <p class="text-gray-700">{{ $tag->description }}</p>
+            </div>
+        </div>
+    @endguest
 </x-master-layout>

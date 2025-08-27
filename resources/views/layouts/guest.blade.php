@@ -21,6 +21,9 @@
         {{ $slot }}
 
     </div>
+    @php
+        $isRtl = app()->getLocale() === 'ar';
+    @endphp
     <footer class="bg-gradient-to-br from-[#FCF7F8] via-white to-red-50 text-[#A31621]">
         <div class="max-w-screen-xl px-4 pt-16 pb-6 mx-auto sm:px-6 lg:px-8 lg:pt-24">
             <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -125,7 +128,7 @@
                         </nav>
                     </div> --}}
 
-                    <div class="text-center sm:text-left">
+                    <div class="text-center {{ $isRtl ? 'text-right' : 'text-left' }}">
                         <p class="text-lg font-medium text-[#A31621]">
                             {{ app()->getLocale() === 'en' ? 'Helpful Links' : 'روابط مفيدة' }}
                         </p>
@@ -159,7 +162,7 @@
                     </div>
 
 
-                    <div class="text-center sm:text-left">
+                    <div class="text-center {{ $isRtl ? 'sm:text-right' : 'sm:text-left' }}">
                         <p class="text-lg font-medium text-[#A31621]">
                             {{ app()->getLocale() === 'en' ? 'Contact Us' : 'تواصل معنا' }}</p>
 

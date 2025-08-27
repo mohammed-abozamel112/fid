@@ -60,7 +60,8 @@ class ServiceController extends Controller
      */
     public function show($lang, Service $service)
     {
-        return view('services.show', compact('service'));
+        $tags = $service->tags;
+        return view('services.show', compact('service', 'tags'));
     }
 
     /**
