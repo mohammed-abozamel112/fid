@@ -1,4 +1,4 @@
-<header class="w-full fixed top-0 lg:max-w-4xl max-w-[335px] text-sm not-has-[nav]:hidden z-50">
+<header class="relative w-full top-0 text-sm not-has-[nav]:hidden z-50">
     @if (Route::has('login'))
         <nav class="fixed top-0 z-50 w-full bg-transparent text-[#504f4f] shadow-md">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

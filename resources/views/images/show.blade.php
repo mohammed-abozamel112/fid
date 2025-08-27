@@ -13,7 +13,8 @@
             <div class="flex flex-col md:flex-row gap-6">
                 <div class="md:w-1/2">
                     <div class="bg-gray-100 rounded-lg p-4 mb-4">
-                        <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $image->alt_text }}" class="w-full h-auto rounded-lg">
+                        <img src="{{ asset('storage/' . $image->image) }}" alt="{{ $image->alt_text }}"
+                            class="w-full h-auto rounded-lg">
                     </div>
                 </div>
 
@@ -22,17 +23,19 @@
 
                     <div class="grid grid-cols-1 gap-4 mb-4">
                         <div>
-                           
+
                             <p><strong>Name:</strong> {{ $image->name }}</p>
                             <p><strong>Alt Text:</strong> {{ $image->alt_text }}</p>
                             <p><strong>Caption:</strong> {{ $image->caption }}</p>
                         </div>
 
-                      
+
                     </div>
 
                     <div class="mb-4">
-                        <p><strong>Type:</strong> <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">{{ $image->type }}</span></p>
+                        <p><strong>Type:</strong> <span
+                                class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">{{ $image->type }}</span>
+                        </p>
                     </div>
 
                     <div class="text-sm text-gray-500">
@@ -43,25 +46,27 @@
             </div>
         </div>
 
-        <div class="flex space-x-4">
-            <a href="{{ route('images.edit', ['lang' => app()->getLocale(), 'image' => $image->id]) }}"
-                class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                Edit Image
-            </a>
+        @auth
+            <div class="flex space-x-4">
+                <a href="{{ route('images.edit', ['lang' => app()->getLocale(), 'image' => $image->id]) }}"
+                    class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                    Edit Image
+                </a>
 
-            <form action="{{ route('images.destroy', ['lang' => app()->getLocale(), 'image' => $image->id]) }}"
-                method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
-                    Delete Image
-                </button>
-            </form>
+                <form action="{{ route('images.destroy', ['lang' => app()->getLocale(), 'image' => $image->id]) }}"
+                    method="POST" onsubmit="return confirm('Are you sure you want to delete this image?');">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        Delete Image
+                    </button>
+                </form>
 
-            <a href="{{ route('images.index', ['lang' => app()->getLocale()]) }}"
-                class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
-                Back to Images
-            </a>
-        </div>
+                <a href="{{ route('images.index', ['lang' => app()->getLocale()]) }}"
+                    class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                    Back to Images
+                </a>
+            </div>
+        @endauth
     </div>
 </x-master-layout>

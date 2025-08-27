@@ -6,21 +6,22 @@ Alpine.start();
 
 /* ON SCROLL HEADER Nav bg-[#a31621] */
 window.addEventListener("scroll", function () {
-    const header = document.querySelector("header nav");
+    const header = document.querySelector("header");
     const nav = document.querySelector("header nav");
     const links = nav.querySelectorAll("a");
     if (window.scrollY > 100) {
+        header.classList.add("fixed");
+        header.classList.remove("relative");
         nav.classList.add("glasseff-scroll");
         /* make width 80%  */
         nav.classList.add("w-[80%]");
-
         nav.classList.remove("w-full");
-
         nav.classList.remove("glasseff");
     } else {
+        header.classList.add("relative");
+        header.classList.remove("fixed");
         nav.classList.remove("glasseff-scroll");
         nav.classList.remove("w-[80%]");
-
         nav.classList.add("w-full");
         nav.classList.add("glasseff");
     }
@@ -94,36 +95,40 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 // Scroll animation initialization
 function initAnimations() {
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
+    const animatedElements = document.querySelectorAll(".animate-on-scroll");
 
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // Element is entering the viewport (scrolling down)
-                entry.target.classList.add('is-visible');
-            } else {
-                // Element is leaving the viewport (scrolling up)
-                entry.target.classList.remove('is-visible');
-            }
-        });
-    }, {
-        threshold: 0.2,
-        rootMargin: '0px 0px -50px 0px' // Add some margin to trigger animations earlier
-    });
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    // Element is entering the viewport (scrolling down)
+                    entry.target.classList.add("is-visible");
+                } else {
+                    // Element is leaving the viewport (scrolling up)
+                    entry.target.classList.remove("is-visible");
+                }
+            });
+        },
+        {
+            threshold: 0.2,
+            rootMargin: "0px 0px -50px 0px", // Add some margin to trigger animations earlier
+        }
+    );
 
-    animatedElements.forEach(element => {
+    animatedElements.forEach((element) => {
         // Check if the element is already in the viewport on page load
         const rect = element.getBoundingClientRect();
-        const isInViewport = (
+        const isInViewport =
             rect.top >= 0 &&
             rect.left >= 0 &&
-            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-        );
+            rect.bottom <=
+                (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <=
+                (window.innerWidth || document.documentElement.clientWidth);
 
         if (isInViewport) {
             // If it's already visible, animate it immediately
-            element.classList.add('is-visible');
+            element.classList.add("is-visible");
         }
 
         // Always observe the element for both scroll directions
@@ -132,7 +137,7 @@ function initAnimations() {
 }
 
 // Initialize animations on page load
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     initAnimations();
 });
 

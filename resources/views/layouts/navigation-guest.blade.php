@@ -1,7 +1,7 @@
 @php
     $isRtl = app()->getLocale() === 'ar';
 @endphp
-<header class="fixed flex justify-center top-0 w-full text-sm not-has-[nav]:hidden z-50 transition-all duration-1000">
+<header class="relative flex justify-center top-0 w-full text-sm not-has-[nav]:hidden z-50 transition-all duration-1000">
     @if (Route::has('login'))
         <nav
             class="relative min-w-[80%] p-2 top-0 z-50 w-full glasseff text-[#A31621] shadow-md transition-all duration-1000">

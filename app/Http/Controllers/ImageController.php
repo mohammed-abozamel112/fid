@@ -15,7 +15,10 @@ class ImageController extends Controller
     public function index()
     {
         $images = Image::latest()->paginate(10);
-        return view('images.index', compact('images'));
+        // get latest 5 image with type gallery
+
+        $sliderImages = Image::latest()->where('type', 'gallery')->take(5)->get();
+        return view('images.index', compact('images', 'sliderImages'));
     }
 
     /**
