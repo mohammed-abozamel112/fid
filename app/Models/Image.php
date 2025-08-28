@@ -18,7 +18,8 @@ class Image extends Model
         'alt_text_en',
         'caption_ar',
         'caption_en',
-        'type',
+        'type_ar',
+        'type_en',
     ];
     public function getNameAttribute()
     {
@@ -37,5 +38,11 @@ class Image extends Model
         $locale = app()->getLocale();
         $column = 'caption_' . $locale;
         return $this->{$column} ?? $this->caption_en;
+    }
+    public function getTypeAttribute()
+    {
+        $locale = app()->getLocale();
+        $column = 'type_' . $locale;
+        return $this->{$column} ?? $this->type_en;
     }
 }

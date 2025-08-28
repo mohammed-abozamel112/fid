@@ -458,7 +458,6 @@
     {{-- section for works --}}
 
     {{-- Clients Section --}}
-    {{-- Portfolio Section --}}
     <section id="partener" class="w-full py-20 bg-gradient-to-br from-gray-50 to-white ">
         <div class="container mx-auto px-4">
             <div class="max-w-7xl mx-auto">

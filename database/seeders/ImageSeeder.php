@@ -22,7 +22,8 @@ class ImageSeeder extends Seeder
             'alt_text_en' => 'sadasdasdasd',
             'caption_ar' => 'sadsadasss',
             'caption_en' => 'vcxvcxvnvnmjfd',
-            'type' => 'home',
+            'type_ar' => 'الرئيسية',
+            'type_en' => 'home',
         ]);
         /* add 6 image with type about */
         $image = [
@@ -35,7 +36,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'sadasdasdasd',
                 'caption_ar' => 'sadsadasss',
                 'caption_en' => 'vcxvcxvnvnmjfd',
-                'type' => 'home',
+                'type_ar' => 'الرئيسية',
+                'type_en' => 'home',
             ],
             [
                 'name_ar' => 'عن 1',
@@ -46,7 +48,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'about 1',
                 'caption_ar' => 'عن 1',
                 'caption_en' => 'about 1',
-                'type' => 'about',
+                'type_ar' => 'حول',
+                'type_en' => 'about',
             ],
             [
                 'name_ar' => 'عن 2',
@@ -57,7 +60,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'about 2',
                 'caption_ar' => 'عن 2',
                 'caption_en' => 'about 2',
-                'type' => 'about',
+                'type_ar' => 'حول',
+                'type_en' => 'about',
             ],
             [
                 'name_ar' => 'عن 3',
@@ -68,7 +72,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'about 3',
                 'caption_ar' => 'عن 3',
                 'caption_en' => 'about 3',
-                'type' => 'about',
+                'type_ar' => 'حول',
+                'type_en' => 'about',
             ],
             [
                 'name_ar' => 'عن 4',
@@ -79,7 +84,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'about 4',
                 'caption_ar' => 'عن 4',
                 'caption_en' => 'about 4',
-                'type' => 'about',
+                'type_ar' => 'حول',
+                'type_en' => 'about',
             ],
             [
                 'name_ar' => 'عن 5',
@@ -90,7 +96,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'about 5',
                 'caption_ar' => 'عن 5',
                 'caption_en' => 'about 5',
-                'type' => 'about',
+                'type_ar' => 'حول',
+                'type_en' => 'about',
             ],
             [
                 'name_ar' => 'عن 6',
@@ -101,7 +108,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'about 6',
                 'caption_ar' => 'عن 6',
                 'caption_en' => 'about 6',
-                'type' => 'about',
+                'type_ar' => 'حول',
+                'type_en' => 'about',
             ],
             /* add 6 images with type client */
              [
@@ -113,7 +121,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
              [
                 'name_ar' => 'شركاء 6',
@@ -124,7 +133,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
              [
                 'name_ar' => 'شركاء 6',
@@ -135,7 +145,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
              [
                 'name_ar' => 'شركاء 6',
@@ -146,7 +157,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
              [
                 'name_ar' => 'شركاء 6',
@@ -157,7 +169,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
              [
                 'name_ar' => 'شركاء 6',
@@ -168,7 +181,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
              [
                 'name_ar' => 'شركاء 6',
@@ -179,7 +193,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
              [
                 'name_ar' => 'شركاء 6',
@@ -190,7 +205,8 @@ class ImageSeeder extends Seeder
                 'alt_text_en' => 'partners 6',
                 'caption_ar' => 'شركاء 6',
                 'caption_en' => 'partners 6',
-                'type' => 'client',
+                'type_ar' => 'عميل',
+                'type_en' => 'client',
             ],
         ];
         foreach ($image as $img) {

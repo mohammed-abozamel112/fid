@@ -15,9 +15,9 @@ class ImageController extends Controller
     public function index()
     {
         $images = Image::latest()->paginate(10);
-        // get latest 5 image with type gallery
+        // get latest 5 image with type gallery the type is type_en and type_ar
 
-        $sliderImages = Image::latest()->where('type', 'gallery')->take(5)->get();
+        $sliderImages = Image::latest()->where('type_en', 'gallery')->orWhere('type_ar', 'معرض')->take(5)->get();
         return view('images.index', compact('images', 'sliderImages'));
     }
 
