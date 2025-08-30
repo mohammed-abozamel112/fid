@@ -171,8 +171,7 @@
                 <label for="tag_id"
                     class="block text-gray-700 font-bold mb-2">{{ $isRtl ? 'التصنيف:' : 'Tag:' }}</label>
                 <select name="tag_id" id="tag_id"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required>
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Select Tag</option>
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->id }}"
@@ -189,8 +188,7 @@
                 <label for="blog_id"
                     class="block text-gray-700 font-bold mb-2">{{ $isRtl ? 'المدونة:' : 'Blog:' }}</label>
                 <select name="blog_id" id="blog_id"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required>
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Select Blog</option>
                     @foreach ($blogs as $blog)
                         <option value="{{ $blog->id }}"
@@ -207,8 +205,7 @@
                 <label for="service_id"
                     class="block text-gray-700 font-bold mb-2">{{ $isRtl ? 'الخدمة:' : 'Service:' }}</label>
                 <select name="service_id" id="service_id"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required>
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                     <option value="">Select Service</option>
                     @foreach ($services as $service)
                         <option value="{{ $service->id }}"

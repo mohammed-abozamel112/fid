@@ -132,11 +132,10 @@
             <div class="mb-4">
                 <label for="tag_id" class="block text-gray-700 font-bold mb-2">{{ $isRtl ? __('labels.tag_ar') : __('labels.tag') }}</label>
                 <select name="tag_id" id="tag_id"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required>
-                    <option value="">Select Tag</option>
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Select Tag (optional)</option>
                     <?php foreach ($tags as $tag): ?>
-                        <option value="{{ $tag->id }}" {{ old('tag_id', $image->tag_id) == $tag->id ? 'selected' : '' }}>{{ $tag->name }}</option>
+                        <option value="{{ $tag->id }}" {{ old('tag_id', isset($image) ? $image->tag_id : '') == $tag->id ? 'selected' : '' }}>{{ $tag->name }}</option>
                     <?php endforeach; ?>
                 </select>
                 @if ($errors->has('tag_id'))
@@ -147,11 +146,10 @@
             <div class="mb-4">
                 <label for="blog_id" class="block text-gray-700 font-bold mb-2">{{ $isRtl ? __('labels.blog_ar') : __('labels.blog') }}</label>
                 <select name="blog_id" id="blog_id"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required>
-                    <option value="">Select Blog</option>
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Select Blog (optional)</option>
                     <?php foreach ($blogs as $blog): ?>
-                        <option value="{{ $blog->id }}" {{ old('blog_id', $image->blog_id) == $blog->id ? 'selected' : '' }}>{{ $blog->title }}</option>
+                        <option value="{{ $blog->id }}" {{ old('blog_id', isset($image) ? $image->blog_id : '') == $blog->id ? 'selected' : '' }}>{{ $blog->title }}</option>
                     <?php endforeach; ?>
                 </select>
                 @if ($errors->has('blog_id'))
@@ -162,11 +160,10 @@
             <div class="mb-4">
                 <label for="service_id" class="block text-gray-700 font-bold mb-2">{{ $isRtl ? __('labels.service_ar') : __('labels.service') }}</label>
                 <select name="service_id" id="service_id"
-                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    required>
-                    <option value="">Select Service</option>
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <option value="">Select Service (optional)</option>
                     <?php foreach ($services as $service): ?>
-                        <option value="{{ $service->id }}" {{ old('service_id', $image->service_id) == $service->id ? 'selected' : '' }}>{{ $service->name }}</option>
+                        <option value="{{ $service->id }}" {{ old('service_id', isset($image) ? $image->service_id : '') == $service->id ? 'selected' : '' }}>{{ $service->name }}</option>
                     <?php endforeach; ?>
                 </select>
                 @if ($errors->has('service_id'))
