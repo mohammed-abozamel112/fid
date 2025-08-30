@@ -32,7 +32,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'جلسة استراتيجية التسويق',
                 'name_en' => 'Marketing Strategy Session',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'marketing-strategy-session.jpg'),
                 'alt_text_ar' => 'فريق FID أثناء وضع استراتيجية تسويق ناجحة',
                 'alt_text_en' => 'FID team creating a successful marketing strategy',
@@ -44,7 +44,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'ورشة عمل الهوية البصرية',
                 'name_en' => 'Branding Workshop',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'branding-workshop.jpg'),
                 'alt_text_ar' => 'ورشة عمل لتطوير الهوية البصرية لعلامة تجارية',
                 'alt_text_en' => 'Workshop focused on developing a visual brand identity',
@@ -56,7 +56,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'فريق تطوير الويب',
                 'name_en' => 'Web Development Team',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'web-development-team.jpg'),
                 'alt_text_ar' => 'فريق برمجة مواقع الويب في شركة FID',
                 'alt_text_en' => 'FID’s web development team building custom websites',
@@ -68,7 +68,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'حملة وسائل التواصل الاجتماعي',
                 'name_en' => 'Social Media Campaign',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'social-media-campaign.jpg'),
                 'alt_text_ar' => 'حملة إعلانية على فيسبوك وإنستغرام بواسطة FID',
                 'alt_text_en' => 'Facebook and Instagram ad campaign by FID',
@@ -80,7 +80,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'جلسة عصف ذهني إبداعية',
                 'name_en' => 'Creative Brainstorming',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'creative-brainstorming.jpg'),
                 'alt_text_ar' => 'فريق FID يناقش أفكار مبتكرة لمشروع تسويقي',
                 'alt_text_en' => 'FID team brainstorming creative ideas for a marketing project',
@@ -92,7 +92,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'تصميم واجهات المستخدم',
                 'name_en' => 'UI/UX Design',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'ui-ux-design.jpg'),
                 'alt_text_ar' => 'تصميم تجربة مستخدم احترافية من FID',
                 'alt_text_en' => 'Professional user interface and experience design by FID',
@@ -104,7 +104,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'فريق صناعة المحتوى',
                 'name_en' => 'Content Creation Team',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'content-creation-team.jpg'),
                 'alt_text_ar' => 'فريق FID أثناء إنتاج محتوى رقمي مخصص',
                 'alt_text_en' => 'FID content team producing custom digital content',
@@ -116,7 +116,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'تصميم شعار احترافي',
                 'name_en' => 'Professional Logo Design',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'logo-design.jpg'),
                 'alt_text_ar' => 'تصميم شعار فريد لعلامة تجارية ناشئة',
                 'alt_text_en' => 'Creating a unique logo for a startup brand',
@@ -128,7 +128,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'لوحة تحكم التحليلات',
                 'name_en' => 'Analytics Dashboard',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'analytics-dashboard.jpg'),
                 'alt_text_ar' => 'تحليل بيانات الحملة التسويقية عبر لوحة تحكم FID',
                 'alt_text_en' => 'Campaign data analysis using FID’s dashboard',
@@ -140,7 +140,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'تصميم تطبيق جوال',
                 'name_en' => 'Mobile App Design',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'mobile-app-design.jpg'),
                 'alt_text_ar' => 'تصميم تجربة استخدام لتطبيق جوال حديث',
                 'alt_text_en' => 'Modern mobile app UX/UI design in progress',
@@ -152,7 +152,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'تعاون الفريق',
                 'name_en' => 'Team Collaboration',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'team-collaboration.jpg'),
                 'alt_text_ar' => 'فريق FID يتعاون في تنفيذ مشروع إبداعي',
                 'alt_text_en' => 'FID team collaborating on a creative project',
@@ -164,7 +164,7 @@ class ImageSeeder extends Seeder
             [
                 'name_ar' => 'عرض تقديمي للعميل',
                 'name_en' => 'Client Presentation',
-                'path_url' => '',
+                
                 'image' => asset('storage/' . 'client-presentation.jpg'),
                 'alt_text_ar' => 'عرض تسويقي مقدم من FID لأحد العملاء',
                 'alt_text_en' => 'FID presenting a marketing proposal to a client',
