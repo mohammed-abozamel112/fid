@@ -1,5 +1,7 @@
 <x-master-layout>
-
+@php
+    $isRtl = app()->getLocale() === 'ar';
+@endphp
     <div class="container mx-auto px-4">
         <h1 class="text-2xl font-bold mb-4">Upload New Image</h1>
 
@@ -125,6 +127,51 @@
                 @error('image')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
+            </div>
+           {{-- add dropdown for tags and services and blogs --}}
+            <div class="mb-4">
+                <label for="tag_id" class="block text-gray-700 font-bold mb-2">{{ $isRtl ? __('labels.tag_ar') : __('labels.tag') }}</label>
+                <select name="tag_id" id="tag_id"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required>
+                    <option value="">Select Tag</option>
+                    <?php foreach ($tags as $tag): ?>
+                        <option value="{{ $tag->id }}" {{ old('tag_id', $image->tag_id) == $tag->id ? 'selected' : '' }}>{{ $tag->name }}</option>
+                    <?php endforeach; ?>
+                </select>
+                @if ($errors->has('tag_id'))
+                    <p class="text-red-500 text-sm mt-1">{{ $errors->first('tag_id') }}</p>
+                @endif
+            </div>
+
+            <div class="mb-4">
+                <label for="blog_id" class="block text-gray-700 font-bold mb-2">{{ $isRtl ? __('labels.blog_ar') : __('labels.blog') }}</label>
+                <select name="blog_id" id="blog_id"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required>
+                    <option value="">Select Blog</option>
+                    <?php foreach ($blogs as $blog): ?>
+                        <option value="{{ $blog->id }}" {{ old('blog_id', $image->blog_id) == $blog->id ? 'selected' : '' }}>{{ $blog->title }}</option>
+                    <?php endforeach; ?>
+                </select>
+                @if ($errors->has('blog_id'))
+                    <p class="text-red-500 text-sm mt-1">{{ $errors->first('blog_id') }}</p>
+                @endif
+            </div>
+
+            <div class="mb-4">
+                <label for="service_id" class="block text-gray-700 font-bold mb-2">{{ $isRtl ? __('labels.service_ar') : __('labels.service') }}</label>
+                <select name="service_id" id="service_id"
+                    class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    required>
+                    <option value="">Select Service</option>
+                    <?php foreach ($services as $service): ?>
+                        <option value="{{ $service->id }}" {{ old('service_id', $image->service_id) == $service->id ? 'selected' : '' }}>{{ $service->name }}</option>
+                    <?php endforeach; ?>
+                </select>
+                @if ($errors->has('service_id'))
+                    <p class="text-red-500 text-sm mt-1">{{ $errors->first('service_id') }}</p>
+                @endif
             </div>
 
             <div class="flex items-center justify-between">

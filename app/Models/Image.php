@@ -19,6 +19,9 @@ class Image extends Model
         'caption_en',
         'type_ar',
         'type_en',
+        'tag_id',
+        'blog_id',
+        'service_id',
     ];
     public function getNameAttribute()
     {

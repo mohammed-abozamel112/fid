@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Image;
 use App\Http\Requests\StoreImageRequest;
 use App\Http\Requests\UpdateImageRequest;
+use App\Models\Blog;
+use App\Models\Service;
+use App\Models\Tag;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -26,7 +29,12 @@ class ImageController extends Controller
      */
     public function create($lang)
     {
-        return view('images.create', compact('lang'));
+        // services and blogs and tags
+        $services = Service::all();
+        $blogs = Blog::all();
+        $tags = Tag::all();
+
+        return view('images.create', compact('lang', 'services', 'blogs', 'tags'));
     }
 
     /**
@@ -58,7 +66,12 @@ class ImageController extends Controller
      */
     public function edit($lang, Image $image)
     {
-        return view('images.edit', compact('image', 'lang'));
+        // services and blogs and tags
+        $services = Service::all();
+        $blogs = Blog::all();
+        $tags = Tag::all();
+
+        return view('images.edit', compact('image', 'lang', 'services', 'blogs', 'tags'));
     }
 
     /**
