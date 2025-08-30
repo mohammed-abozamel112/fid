@@ -15,7 +15,6 @@ return new class extends Migration {
             // name ar and en
             $table->string('name_ar')->nullable();
             $table->string('name_en')->nullable();
-            $table->string('path_url')->nullable();
             $table->string('image')->nullable();
             // alt text and caption ar and en
             $table->string('alt_text_ar')->nullable();

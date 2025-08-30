@@ -12,7 +12,6 @@ class Image extends Model
     protected $fillable = [
         'name_ar',
         'name_en',
-        'path_url',
         'image',
         'alt_text_ar',
         'alt_text_en',

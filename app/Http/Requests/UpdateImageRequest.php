@@ -25,7 +25,7 @@ class UpdateImageRequest extends FormRequest
         return [
             'name_ar' => 'nullable|string|max:255',
             'name_en' => 'nullable|string|max:255',
-            'path_url' => 'nullable|url|max:10048',
+             'image' => 'required|file|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
             'alt_text_ar' => 'nullable|string|max:255',
             'alt_text_en' => 'nullable|string|max:255',
             'caption_ar' => 'nullable|string|max:255',

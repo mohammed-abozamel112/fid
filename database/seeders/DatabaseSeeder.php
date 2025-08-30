@@ -27,13 +27,13 @@ class DatabaseSeeder extends Seeder
 
 
         $this->call([
-            ImageSeeder::class,
             ServiceSeeder::class,
             BlogSeeder::class,
             ProjectSeeder::class,
             ClientSeeder::class,
             ReviewSeeder::class,
             TagSeeder::class,
+            ImageSeeder::class,
         ]);
 
 
