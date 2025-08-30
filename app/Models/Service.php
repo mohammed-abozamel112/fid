@@ -102,6 +102,11 @@ class Service extends Model
     {
         return $this->hasMany(Tag::class);
     }
+    // images relation
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 
     /* public function orderItems()
     {

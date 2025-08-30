@@ -45,4 +45,20 @@ class Image extends Model
         $column = 'type_' . $locale;
         return $this->{$column} ?? $this->type_en;
     }
+    // tag relation
+    public function tag()
+    {
+        return $this->belongsTo(Tag::class);
+    }
+    // blog relation
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class);
+    }
+    // service relation
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
+
 }

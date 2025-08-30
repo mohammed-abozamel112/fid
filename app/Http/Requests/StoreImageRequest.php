@@ -40,6 +40,7 @@ class StoreImageRequest extends FormRequest
             ],
             'service_id' => 'nullable|exists:services,id',
             'blog_id' => 'nullable|exists:blogs,id',
+            'tag_id' => 'nullable|exists:tags,id',
         ];
     }
 }

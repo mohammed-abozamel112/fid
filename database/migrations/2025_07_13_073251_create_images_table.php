@@ -31,6 +31,8 @@ return new class extends Migration {
             $table->foreignId('service_id')->nullable()->constrained('services')->onDelete('cascade');
             // foreign key for blog
             $table->foreignId('blog_id')->nullable()->constrained('blogs')->onDelete('cascade');
+            //tags foreign key
+            $table->foreignId('tag_id')->nullable()->constrained('tags')->onDelete('cascade');
             $table->timestamps();
         });
     }

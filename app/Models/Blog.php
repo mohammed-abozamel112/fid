@@ -104,4 +104,9 @@ class Blog extends Model
     {
         return $this->hasMany(Tag::class);
     }
+    // images relation
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }

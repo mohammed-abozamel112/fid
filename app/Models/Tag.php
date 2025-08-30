@@ -9,7 +9,7 @@ class Tag extends Model
 {
     /** @use HasFactory<\Database\Factories\TagFactory> */
     use HasFactory;
-      protected $fillable = [
+    protected $fillable = [
         'name_ar',
         'name_en',
         'description_ar',
@@ -17,8 +17,9 @@ class Tag extends Model
         'url',
         'service_id',
         'blog_id',
+        
     ];
-        // Dynamic accessor for name attribute based on locale
+    // Dynamic accessor for name attribute based on locale
     public function getNameAttribute()
     {
         $locale = app()->getLocale();
@@ -44,7 +45,12 @@ class Tag extends Model
         return $this->belongsToMany(Project::class);
     }
     public function service()
-{
-    return $this->belongsTo(Service::class);
-}
+    {
+        return $this->belongsTo(Service::class);
+    }
+    //images relation
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
 }

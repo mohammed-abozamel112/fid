@@ -9,7 +9,7 @@ class Client extends Model
 {
     /** @use HasFactory<\Database\Factories\ClientFactory> */
     use HasFactory;
-     protected $fillable = [
+    protected $fillable = [
         'name_ar',
         'name_en',
         'description_ar',
@@ -18,20 +18,24 @@ class Client extends Model
         'status',
         'category_ar',
         'category_en',
+        // all foreign keys
+        'service_id',
+        'blog_id',
+        'tag_id',
     ];
-      public function getNameAttribute()
+    public function getNameAttribute()
     {
         $locale = app()->getLocale();
         $column = 'name_' . $locale;
         return $this->{$column} ?? $this->name_en;
     }
-      public function getDescriptionAttribute()
+    public function getDescriptionAttribute()
     {
         $locale = app()->getLocale();
         $column = 'description_' . $locale;
         return $this->{$column} ?? $this->description_en;
     }
-      public function getCategoryAttribute()
+    public function getCategoryAttribute()
     {
         $locale = app()->getLocale();
         $column = 'category_' . $locale;

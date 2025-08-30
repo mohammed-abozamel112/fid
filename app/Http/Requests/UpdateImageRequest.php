@@ -42,6 +42,7 @@ class UpdateImageRequest extends FormRequest
             // assuming they are nullable for this request
             'service_id' => 'nullable|exists:services,id',
             'blog_id' => 'nullable|exists:blogs,id',
+            'tag_id' => 'nullable|exists:tags,id',
         ];
     }
 }

@@ -34,7 +34,7 @@
                         onerror="this.onerror=null; this.src='{{ asset('storage/main.png') }}'">
                 </div>
             @endif
-            <h1 class="text-4xl font-bold text-gray-900 mb-4 leading-tight">
+            <h1 class="text-4xl font-bold text-[#A31621] mb-4 leading-tight">
                 {{ $blog->title }}
             </h1>
 
@@ -56,13 +56,26 @@
                     {{ ucfirst($blog->status) }}
                 </span>
             </div>
+            <!-- Tags Section -->
+            @if ($blog->tags && $blog->tags->count() > 0)
+                <section class="mt-8 pt-8 border-t border-gray-200">
+                    <div class="flex flex-wrap gap-2">
+                        @foreach ($blog->tags as $tag)
+                            <span class="bg-[#A31621] text-white px-3 py-1 rounded-full text-sm">
+                                {{ $tag->name }}
+                            </span>
+                        @endforeach
+                    </div>
+                </section>
+            @endif
         </header>
+
 
         <!-- Short Description -->
         @if ($blog->short_description)
             <section class="mb-8">
-                <div class="bg-gray-50 p-6 rounded-lg">
-                    <p class="text-lg text-gray-700 leading-relaxed">
+                <div class="p-6 rounded-lg">
+                    <p class="text-lg text-[#a31621] leading-relaxed">
                         {{ $blog->short_description }}
                     </p>
                 </div>
@@ -120,41 +133,27 @@
             @endif
         </div>
 
-        <!-- Tags Section -->
-        @if ($blog->tags && $blog->tags->count() > 0)
-            <section class="mt-8 pt-8 border-t border-gray-200">
-                <h3 class="text-lg font-semibold text-gray-900 mb-4">
-                    {{ app()->getLocale() === 'en' ? 'Tags' : 'العلامات' }}
-                </h3>
-                <div class="flex flex-wrap gap-2">
-                    @foreach ($blog->tags as $tag)
-                        <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">
-                            {{ $tag->name }}
-                        </span>
-                    @endforeach
-                </div>
-            </section>
-        @endif
+
 
         <!-- Share Section -->
         <section class="mt-8 pt-8 border-t border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-900 mb-4">
+            <h3 class="text-lg font-semibold     text-gray-900 mb-4">
                 {{ app()->getLocale() === 'en' ? 'Share this article' : 'شارك هذا المقال' }}
             </h3>
-            <div class="flex space-x-4">
+            <div class="flex gap-4">
                 <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($blog->title) }}"
-                    class="bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded transition-colors" target="_blank"
-                    rel="noopener">
+                    class="bg-[#A31621] hover:bg-[#a3162257] text-white px-4 py-2 rounded transition-colors"
+                    target="_blank" rel="noopener">
                     Twitter
                 </a>
                 <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}"
-                    class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded transition-colors" target="_blank"
-                    rel="noopener">
+                    class="bg-[#A31621] hover:bg-[#a3162257] text-white px-4 py-2 rounded transition-colors"
+                    target="_blank" rel="noopener">
                     Facebook
                 </a>
                 <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode(request()->url()) }}"
-                    class="bg-blue-700 hover:bg-blue-800 text-white px-4 py-2 rounded transition-colors" target="_blank"
-                    rel="noopener">
+                    class="bg-[#A31621] hover:bg-[#a3162296] text-white px-4 py-2 rounded transition-colors"
+                    target="_blank" rel="noopener">
                     LinkedIn
                 </a>
             </div>

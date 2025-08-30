@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use App\Http\Requests\StoreTagRequest;
 use App\Http\Requests\UpdateTagRequest;
+use App\Models\Image;
 
 class TagController extends Controller
 {
@@ -39,7 +40,10 @@ class TagController extends Controller
      */
     public function show($lang, Tag $tag)
     {
-        return view('tags.show', compact('tag'));
+        // images with tag_id relation
+        $imagesTag=Image::where('tag_id', $tag->id)->get();
+
+        return view('tags.show', compact('tag', 'imagesTag'));
     }
 
     /**
