@@ -217,7 +217,8 @@
                                     alt="{{ $service->name }}" />
                             </div>
                             <div class="meta">
-                                <a href="{{ route('services.show', ['lang' => app()->getLocale(), 'service' => $service->id]) }}">
+                                <a
+                                    href="{{ route('services.show', ['lang' => app()->getLocale(), 'service' => $service->id]) }}">
                                     <h2 class="text-6xl text-break py-3">{{ $service->name }}</h2>
                                 </a>
                                 <p class="desc text-2xl text-gray-500 text-break p-2 text-justify">
